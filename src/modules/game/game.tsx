@@ -1,18 +1,14 @@
 import heroesList from '@/common/heroes.json'
 import HeroPicker from '@/common/components/HeroPicker'
 import Team from '@/common/components/Team'
+import type {TeamType} from '@/common/types/game'
 import {useState} from 'react'
 
 
-interface Team {
-  label: string;
-  color: string;
-  heroes: Array<string>;
-}
 
 
 function Game () {
-  const defaultTeams : Team[] = [{
+  const defaultTeams : TeamType[] = [{
     label : 'Your team',
     color : 'blue',
     heroes : []
@@ -32,13 +28,11 @@ function Game () {
     })
   }
 
+  const teamsList = teams.map((t, i) => <Team key={i} team={t} onClick={() => setTeamIndex(i)}></Team>)
+
   return (
     <div>
-      Your team : 
-      <Team team={teams[0]}></Team>
-
-      Ennemy team :
-      <Team team={teams[1]}></Team>
+      {teamsList}
 
       Victory ? :
       <HeroPicker heroes={heroesList} onHeroPick={handleHeroPick}></HeroPicker>
@@ -46,7 +40,7 @@ function Game () {
   )
 }
 
-function addHeroToTeam(team : Team, hero : string) : Team {
+function addHeroToTeam(team : TeamType, hero : string) : TeamType {
   if(!team.heroes.find( a => a === hero)){
     if(team.heroes.length < 5){
       team.heroes.push(hero)

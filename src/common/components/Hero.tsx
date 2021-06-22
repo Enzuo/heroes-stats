@@ -19,7 +19,7 @@ cursor:pointer;
 `
 
 
-function Hero ({name, onClick}) {
+function Hero ({name, onClick} : HeroProps) {
   const props = {
     onClick : () => onClick ? onClick(name) : null,
     src : 'img/' + name.replace(/ /g, '_') + '_Hero_Portrait.png',
@@ -32,8 +32,9 @@ function Hero ({name, onClick}) {
   return <HeroImg {...props} />
 }
 
-Hero.propTypes = {
-  
+type HeroProps = {
+  name : string,
+  onClick?: Function,
 }
 
 export default Hero
