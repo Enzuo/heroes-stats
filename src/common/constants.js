@@ -1,3 +1,3 @@
 export const HERO_SORT = [
-  'default', 'name', 'class'
+  'default', 'name', 'role', 'universe'
 ]

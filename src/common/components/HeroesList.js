@@ -5,11 +5,17 @@ function HeroesList ({heroes, sortBy}) {
   
   var sortedHeroes = heroes
   if(sortBy && sortBy !== 'default'){
-    console.log('sorting by', sortBy)
     var clonedHeroes = clone(heroes)
     sortedHeroes = clonedHeroes.sort((a, b) => {
-      console.log('a, b', a.name,b.name, a.name < b.name)
-      return a.name < b.name ? -1 : 1
+      if(sortBy === 'name'){
+        return a.name < b.name ? -1 : 1
+      }
+      if(sortBy === 'role'){
+        if(a.type === b.type){
+          return a.name < b.name ? -1 : 1
+        }
+        return a.type < b.type ? -1 : 1
+      }
     })
   }
 
