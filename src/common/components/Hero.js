@@ -21,7 +21,7 @@ cursor:pointer;
 
 function Hero ({name, onClick}) {
   const props = {
-    onClick : () => onClick(name),
+    onClick : () => onClick ? onClick(name) : null,
     src : 'img/' + name.replace(/ /g, '_') + '_Hero_Portrait.png',
     alt : name,
     title : name,

@@ -1,6 +1,5 @@
 import {useState} from 'react'
 import SortPicker from '@/common/components/SortPicker'
-import Search from '@/common/components/Search'
 import HeroesList from '@/common/components/HeroesList'
 import { useFormInput } from '@/common/hooks/basicHooks'
 
