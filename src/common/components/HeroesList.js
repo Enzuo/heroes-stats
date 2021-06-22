@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import Hero from '@/common/components/Hero'
 import {clone} from '@/common/utils'
 
 function HeroesList ({heroes, sortBy}) {
@@ -19,7 +20,7 @@ function HeroesList ({heroes, sortBy}) {
     })
   }
 
-  const heroesList = sortedHeroes.map(a => <div>{a.name}</div>)
+  const heroesList = sortedHeroes.map((a, i) => <Hero key={i} name={a.name}></Hero>)
   
   return (
     <div>{heroesList}</div>
