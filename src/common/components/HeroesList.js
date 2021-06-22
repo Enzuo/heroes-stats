@@ -3,6 +3,10 @@ import Hero from '@/common/components/Hero'
 import {clone} from '@/common/utils'
 
 function HeroesList ({heroes, sortBy}) {
+
+  const handleClick = () => {
+
+  }
   
   var sortedHeroes = heroes
   if(sortBy && sortBy !== 'default'){
@@ -20,7 +24,7 @@ function HeroesList ({heroes, sortBy}) {
     })
   }
 
-  const heroesList = sortedHeroes.map((a, i) => <Hero key={i} name={a.name}></Hero>)
+  const heroesList = sortedHeroes.map((a, i) => <Hero key={i} name={a.name} onClick={handleClick}></Hero>)
   
   return (
     <div>{heroesList}</div>
