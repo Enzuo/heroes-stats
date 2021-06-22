@@ -1,6 +1,11 @@
+import heroesList from '@/common/heroes.json'
+import HeroPicker from '@/common/components/HeroPicker'
+
 function Game () { 
+
+  console.log(heroesList)
   return (
-    <div> Hello Game</div>
+    <HeroPicker heroes={heroesList}></HeroPicker>
   )
 }
 
