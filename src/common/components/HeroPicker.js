@@ -5,13 +5,13 @@ import HeroesList from '@/common/components/HeroesList'
 import { useFormInput } from '@/common/hooks/basicHooks'
 
 
-function HeroPicker ({ heroes }) {
+function HeroPicker ({ heroes, onHeroPick}) {
 
   const [sortBy, setSortBy] = useState()
   const search = useFormInput()
 
-  const handleHeroClick = () => {
-    
+  const handleHeroClick = (name) => {
+    onHeroPick(name)
   }
 
   var filteredHeroes = heroes
