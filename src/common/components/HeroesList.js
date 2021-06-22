@@ -2,12 +2,8 @@ import PropTypes from 'prop-types'
 import Hero from '@/common/components/Hero'
 import {clone} from '@/common/utils'
 
-function HeroesList ({heroes, sortBy}) {
+function HeroesList ({heroes, sortBy, onHeroClick}) {
 
-  const handleClick = () => {
-
-  }
-  
   var sortedHeroes = heroes
   if(sortBy && sortBy !== 'default'){
     var clonedHeroes = clone(heroes)
@@ -24,7 +20,7 @@ function HeroesList ({heroes, sortBy}) {
     })
   }
 
-  const heroesList = sortedHeroes.map((a, i) => <Hero key={i} name={a.name} onClick={handleClick}></Hero>)
+  const heroesList = sortedHeroes.map((a, i) => <Hero key={i} name={a.name} onClick={onHeroClick}></Hero>)
   
   return (
     <div>{heroesList}</div>
