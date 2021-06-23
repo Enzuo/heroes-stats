@@ -12,12 +12,12 @@ type TeamProps = {
 }
 
 function Team ({team, isSelected, onClick, onMemberRemove, onMemberStatusChange} : TeamProps) {
-  const heroList = team.members.map((a, i) => (
+  const heroList = team.members.map((member, i) => (
     <TeamMember 
       key={i} 
-      member={a} 
-      onRemove={onMemberRemove} 
-      onStatusChange={(st) => onMemberStatusChange(a, st)}
+      member={member} 
+      onRemove={() => onMemberRemove(member)} 
+      onStatusChange={(st) => onMemberStatusChange(member, st)}
     />
   ))
   return (

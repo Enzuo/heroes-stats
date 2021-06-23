@@ -7,7 +7,7 @@ import Hero from '@/common/components/Hero'
 
 type TeamMemberProps = {
   member : Member
-  onRemove? : (Member) => void
+  onRemove? : () => void
   onStatusChange? : (object) => void
 }
 
@@ -22,11 +22,11 @@ function TeamMember({member, onRemove, onStatusChange} : TeamMemberProps) {
 
   return (
     <StyledTeamMember>
-      <StyledButton onClick={() => {onRemove(member)}} icon={faTimesCircle} title="Remove"/>
+      <StyledButton onClick={onRemove} icon={faTimesCircle} title="Remove"/>
       <Hero name={member.hero}></Hero>
       <StyledButton selected={member.status.impact === 1} onClick={() => {handleImpactClick(1)}} icon={faThumbsUp} title="Good impact for his team" />
       <StyledButton selected={member.status.impact === -1} onClick={() => {handleImpactClick(-1)}} icon={faThumbsDown} title="Not really useful for his team" />
-      <StyledButton selected={member.status.synergy === 1} onClick={() => {handleSynergyClick()}} icon={faLink} title="Good synergy with one other member of his team" />
+      <StyledButton selected={member.status.synergy === 1} onClick={() => {handleSynergyClick()}} icon={faLink} title="Good synergy with another member of his team" />
     </StyledTeamMember>
   )
 }
