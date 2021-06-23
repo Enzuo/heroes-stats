@@ -5,26 +5,39 @@ import type {Member} from '@/common/types/game'
 import Hero from '@/common/components/Hero'
 
 
-const StyledTeamMember = styled.div`
-  display:flex;
-  flex-direction:column;
-`
+type TeamMemberProps = {
+  member : Member
+  onRemove? : (Member) => void
+  onStatusChange? : (object) => void
+}
 
+function TeamMember({member, onRemove, onStatusChange} : TeamMemberProps) {
+  const handleImpactClick = (value) => {
+    onStatusChange({impact : value})
+  }
+  const handleSynergyClick = () => {
+    const value = member.status.synergy > 0 ? 0 : 1
+    onStatusChange({synergy : value})
+  }
 
-function TeamMember({member} : TeamMemberProps) {
   return (
     <StyledTeamMember>
-      <FontAwesomeIcon icon={faTimesCircle} title="Remove"/>
+      <StyledButton onClick={() => {onRemove(member)}} icon={faTimesCircle} title="Remove"/>
       <Hero name={member.hero}></Hero>
-      <FontAwesomeIcon icon={faThumbsUp} title="Good impact for his team" />
-      <FontAwesomeIcon icon={faThumbsDown} title="Not really useful for his team" />
-      <FontAwesomeIcon icon={faLink} title="Good synergy with one other member of his team" />
+      <StyledButton selected={member.status.impact === 1} onClick={() => {handleImpactClick(1)}} icon={faThumbsUp} title="Good impact for his team" />
+      <StyledButton selected={member.status.impact === -1} onClick={() => {handleImpactClick(-1)}} icon={faThumbsDown} title="Not really useful for his team" />
+      <StyledButton selected={member.status.synergy === 1} onClick={() => {handleSynergyClick()}} icon={faLink} title="Good synergy with one other member of his team" />
     </StyledTeamMember>
   )
 }
 
-type TeamMemberProps = {
-  member : Member
-}
+const StyledButton = styled(FontAwesomeIcon)`
+  color: ${(props) => props.selected ? 'blue' : 'grey'};
+`
+
+const StyledTeamMember = styled.div`
+  display:flex;
+  flex-direction:column;
+`
 
 export default TeamMember

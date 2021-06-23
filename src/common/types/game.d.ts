@@ -1,11 +1,11 @@
 export interface Member {
   hero : string
-  status? : MemberStatus
+  status : MemberStatus
 }
  
 export interface MemberStatus {
-  impact : number
-  synergy : number
+  impact? : number
+  synergy? : number
 }
 
 export interface TeamType {

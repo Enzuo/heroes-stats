@@ -1,7 +1,7 @@
 import heroesList from '@/common/heroes.json'
 import HeroPicker from '@/common/components/HeroPicker'
 import Team from '@/common/components/Team'
-import type {TeamType} from '@/common/types/game'
+import type {TeamType, Member} from '@/common/types/game'
 import {useState} from 'react'
 
 
@@ -28,8 +28,22 @@ function Game () {
     })
   }
 
+  const handleMemberStatus = (tmIndex, member, status) => {
+    setTeams(tms => {
+      return tms.map((team, index) => {
+        return index === tmIndex ? changeMemberStatus(team, member, status) : team
+      })
+    })
+  }
+
   const teamsList = teams.map((t, i) => 
-    <Team key={i} team={t} isSelected={i === teamIndex} onClick={() => setTeamIndex(i)}></Team>
+    <Team 
+      key={i} 
+      team={t} 
+      isSelected={i === teamIndex} 
+      onClick={() => setTeamIndex(i)}
+      onMemberStatusChange={(member, status) => handleMemberStatus(i, member, status)}
+    ></Team>
   )
 
   return (
@@ -45,9 +59,15 @@ function Game () {
 function addHeroToTeam(team : TeamType, hero : string) : TeamType {
   if(!team.members.find( a => a.hero === hero)){
     if(team.members.length < 5){
-      team.members.push({hero})
+      team.members.push({hero, status : {}})
     }
   }
+  return team
+}
+
+function changeMemberStatus(team: TeamType, member : Member, status: object) {
+  var memb = team.members.find(a => a.hero === member.hero)
+  memb.status = {...memb.status, ...status}
   return team
 }
 

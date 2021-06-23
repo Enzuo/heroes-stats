@@ -1,22 +1,31 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import type {TeamType} from '@/common/types/game'
+import type {TeamType, Member} from '@/common/types/game'
 import TeamMember from '@/common/components/TeamMember'
 
 type TeamProps = {
   team : TeamType
-  onClick? : Function
   isSelected? : boolean
+  onClick? : Function
+  onMemberRemove? : (Member) => void
+  onMemberStatusChange? : (Member, status) => void
 }
 
-function Team ({team, onClick, isSelected} : TeamProps) {
-  const heroList = team.members.map((a, i) => <TeamMember key={i} member={a}></TeamMember>)
+function Team ({team, isSelected, onClick, onMemberRemove, onMemberStatusChange} : TeamProps) {
+  const heroList = team.members.map((a, i) => (
+    <TeamMember 
+      key={i} 
+      member={a} 
+      onRemove={onMemberRemove} 
+      onStatusChange={(st) => onMemberStatusChange(a, st)}
+    />
+  ))
   return (
     <StyledTeam selected={isSelected} onClick={() => onClick()}>
       {team.label}
-      <MemberRow className="members">
+      <StyledMember>
         {heroList}
-      </MemberRow>
+      </StyledMember>
     </StyledTeam>
   )
 }
@@ -27,7 +36,7 @@ const StyledTeam = styled.div`
 
 `
 
-const MemberRow = styled.div`
+const StyledMember = styled.div`
   display:flex;
   flex-direction:horizontal;
 `
