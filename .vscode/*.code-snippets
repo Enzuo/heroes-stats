@@ -48,7 +48,6 @@
     "prefix": "rfc",
     "scope": "typescriptreact",
     "body": [
-      "import PropTypes from 'prop-types'",
       "",
       "function ${1:${TM_FILENAME_BASE}} ({$2} : ${1:${TM_FILENAME_BASE}}Props) {",
       "",
