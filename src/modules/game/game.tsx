@@ -11,11 +11,11 @@ function Game () {
   const defaultTeams : TeamType[] = [{
     label : 'Your team',
     color : 'blue',
-    heroes : []
+    members : []
   },{
     label : 'Ennemy team',
     color : 'red',
-    heroes : []
+    members : []
   }]
   const [teams, setTeams] = useState(defaultTeams)
   const [teamIndex, setTeamIndex] = useState(0)
@@ -28,7 +28,9 @@ function Game () {
     })
   }
 
-  const teamsList = teams.map((t, i) => <Team key={i} team={t} onClick={() => setTeamIndex(i)}></Team>)
+  const teamsList = teams.map((t, i) => 
+    <Team key={i} team={t} isSelected={i === teamIndex} onClick={() => setTeamIndex(i)}></Team>
+  )
 
   return (
     <div>
@@ -41,9 +43,9 @@ function Game () {
 }
 
 function addHeroToTeam(team : TeamType, hero : string) : TeamType {
-  if(!team.heroes.find( a => a === hero)){
-    if(team.heroes.length < 5){
-      team.heroes.push(hero)
+  if(!team.members.find( a => a.hero === hero)){
+    if(team.members.length < 5){
+      team.members.push({hero})
     }
   }
   return team
