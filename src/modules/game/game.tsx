@@ -1,4 +1,5 @@
 import heroesList from '@/common/heroes.json'
+import styled from 'styled-components'
 import HeroPicker from '@/common/components/HeroPicker'
 import Team from '@/common/components/Team'
 import type {TeamType, Member} from '@/common/types/game'
@@ -36,6 +37,16 @@ function Game () {
     })
   }
 
+  const handleSave = () => {
+    fetch('/api/game/save', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(teams),
+    })
+  }
+
   const teamsList = teams.map((t, i) => 
     <Team 
       key={i} 
@@ -51,10 +62,24 @@ function Game () {
       {teamsList}
 
       Victory ? :
+      <Button onClick={handleSave}>Save</Button>
       <HeroPicker heroes={heroesList} onHeroPick={handleHeroPick}></HeroPicker>
     </div>
   )
 }
+
+const Button = styled.div`
+  background: #2f9ad0;
+  border-radius: 4px;
+  color: white;
+  padding: 5px 8px;
+  display: inline-block;
+  cursor:pointer;
+  &:hover {
+    background:#1688c1;
+  }
+`
+
 
 function addHeroToTeam(team : TeamType, hero : string) : TeamType {
   if(!team.members.find( a => a.hero === hero)){
