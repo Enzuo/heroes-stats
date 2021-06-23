@@ -22,7 +22,7 @@
     "description": "Creates a React class component with ES6 module system"
   },
 
-  "reactComponentFunctionView": {
+  "reactFunctionComponent": {
     "prefix": "rfc",
     "scope": "javascript,typescript",
     "body": [
@@ -42,6 +42,28 @@
       "export default ${1:${TM_FILENAME_BASE}}"
     ],
     "description": "Creates a React function component"
+  },
+
+  "reactFunctionComponentTS": {
+    "prefix": "rfc",
+    "scope": "typescriptreact",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "",
+      "function ${1:${TM_FILENAME_BASE}} ({$2} : ${1:${TM_FILENAME_BASE}}Props) {",
+      "",
+      "\treturn (",
+      "\t\t<div>$3</div>",
+      "\t)",
+      "}",
+      "",
+      "type ${1:${TM_FILENAME_BASE}}Props = {",
+      "\t$2",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React function component (Typescript)"
   }
 }
 
