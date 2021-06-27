@@ -10,28 +10,27 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Post {
+model Game {
   id        Int      @default(autoincrement()) @id
+  type      Int      @default(1) // SL; QM, ARAM
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
+
+  createdBy Int // User game
+  
+  heroes   GameHero[]
 }
 
-model Profile {
-  id     Int     @default(autoincrement()) @id
-  bio    String?
-  user   User    @relation(fields: [userId], references: [id])
-  userId Int     @unique
-}
+model GameHero {
+  id       Int      @default(autoincrement()) @id
+  heroId   Int
+  gameId   Int
+  
+  team     Int
+  
+  isUser   Boolean @default(false)
+  impact   Int?
+  synergy  Int?
 
-model User {
-  id      Int      @default(autoincrement()) @id
-  email   String   @unique
-  name    String?
-  posts   Post[]
-  profile Profile?
+  game     Game     @relation(fields: [gameId], references: [id])
 }
