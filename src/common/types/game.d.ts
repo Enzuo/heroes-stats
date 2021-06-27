@@ -8,9 +8,12 @@ export interface MemberStatus {
   synergy? : number
 }
 
-export interface TeamType {
+export interface Team {
   label: string
   color: string
   members: Array<Member>
 }
 
+export interface Game {
+
+}

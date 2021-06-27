@@ -2,14 +2,14 @@ import heroesList from '@/common/heroes.json'
 import styled from 'styled-components'
 import HeroPicker from '@/common/components/HeroPicker'
 import Team from '@/common/components/Team'
-import type {TeamType, Member} from '@/common/types/game'
+import type * as T from '@/common/types/game'
 import {useState} from 'react'
 
 
 
 
 function Game () {
-  const defaultTeams : TeamType[] = [{
+  const defaultTeams : T.Team[] = [{
     label : 'Your team',
     color : 'blue',
     members : []
@@ -81,7 +81,7 @@ const Button = styled.div`
 `
 
 
-function addHeroToTeam(team : TeamType, hero : string) : TeamType {
+function addHeroToTeam(team : T.Team, hero : string) : T.Team {
   if(!team.members.find( a => a.hero === hero)){
     if(team.members.length < 5){
       team.members.push({hero, status : {}})
@@ -90,7 +90,7 @@ function addHeroToTeam(team : TeamType, hero : string) : TeamType {
   return team
 }
 
-function changeMemberStatus(team: TeamType, member : Member, status: object) {
+function changeMemberStatus(team: T.Team, member : T.Member, status: object) {
   var memb = team.members.find(a => a.hero === member.hero)
   memb.status = {...memb.status, ...status}
   return team
