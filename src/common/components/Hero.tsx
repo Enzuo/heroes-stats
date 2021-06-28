@@ -3,16 +3,16 @@ import styled from 'styled-components'
 
 
 type HeroProps = {
-  name : string,
+  hero : {id : number, name : string},
   onClick?: Function,
 }
 
-function Hero ({name, onClick} : HeroProps) {
+function Hero ({hero, onClick} : HeroProps) {
   const props = {
-    onClick : () => onClick ? onClick(name) : null,
-    src : 'img/' + name.replace(/ /g, '_') + '_Hero_Portrait.png',
-    alt : name,
-    title : name,
+    onClick : () => onClick ? onClick(hero) : null,
+    src : 'img/' + hero.name.replace(/ /g, '_') + '_Hero_Portrait.png',
+    alt : hero.name,
+    title : hero.name,
   }
   if(onClick){
     return <ClickableHeroImg {...props} />

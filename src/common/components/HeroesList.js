@@ -20,7 +20,7 @@ function HeroesList ({heroes, sortBy, onHeroClick}) {
     })
   }
 
-  const heroesList = sortedHeroes.map((a, i) => <Hero key={i} name={a.name} onClick={onHeroClick}></Hero>)
+  const heroesList = sortedHeroes.map((a, i) => <Hero key={i} hero={a} onClick={onHeroClick}></Hero>)
   
   return (
     <div>{heroesList}</div>

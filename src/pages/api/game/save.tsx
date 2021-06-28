@@ -34,7 +34,7 @@ async function save(game : T.Game) {
   const heroes = game.teams.reduce((heroes, a, index) => {
     const heroesOfTeam = a.members.map(m => { 
       return {
-        heroId : m.hero,
+        heroId : m.hero.id,
         team : index,
       }
     })

@@ -9,8 +9,8 @@ function HeroPicker ({ heroes, onHeroPick}) {
   const [sortBy, setSortBy] = useState()
   const search = useFormInput()
 
-  const handleHeroClick = (name) => {
-    onHeroPick(name)
+  const handleHeroClick = (hero) => {
+    onHeroPick(hero)
   }
 
   var filteredHeroes = heroes

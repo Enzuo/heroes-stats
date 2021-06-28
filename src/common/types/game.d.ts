@@ -1,6 +1,11 @@
 export interface Member {
-  hero : string
+  hero   : Hero
   status : MemberStatus
+}
+
+export interface Hero {
+  id : number
+  name : string
 }
  
 export interface MemberStatus {
