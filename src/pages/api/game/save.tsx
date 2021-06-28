@@ -31,11 +31,14 @@ export default async function handler(req, res) {
 }
 
 async function save(game : T.Game) {
-  const heroes = game.teams.reduce((heroes, a, index) => {
-    const heroesOfTeam = a.members.map(m => { 
+  const heroes = game.teams.reduce((heroes, a, teamIndex) => {
+    const heroesOfTeam = a.members.map((m, memberIndex) => { 
       return {
+        isUser : (teamIndex === 0 && memberIndex === 0),
         heroId : m.hero.id,
-        team : index,
+        team : teamIndex,
+        impact : m.status.impact,
+        synergy : m.status.synergy,
       }
     })
     return heroes.concat(heroesOfTeam)

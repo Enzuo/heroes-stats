@@ -16,7 +16,7 @@ model Game {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  createdBy Int // User game
+  createdBy Int      // User id
   
   heroes   GameHero[]
 }
