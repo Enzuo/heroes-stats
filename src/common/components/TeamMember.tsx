@@ -31,6 +31,7 @@ function TeamMember({member, onRemove, onStatusChange} : TeamMemberProps) {
   )
 }
 
+
 const StyledButton = styled(FontAwesomeIcon)`
   color: ${(props) => props.selected ? 'blue' : 'grey'};
 `

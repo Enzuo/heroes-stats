@@ -15,5 +15,5 @@ export interface Team {
 }
 
 export interface Game {
-
+  teams : Team[]
 }

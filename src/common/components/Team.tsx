@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import type {TeamType, Member} from '@/common/types/game'
+import type * as T from '@/common/types/game'
 import TeamMember from '@/common/components/TeamMember'
 
 type TeamProps = {
-  team : TeamType
+  team : T.Team
   isSelected? : boolean
   onClick? : Function
-  onMemberRemove? : (Member) => void
-  onMemberStatusChange? : (Member, status) => void
+  onMemberRemove? : (m : T.Member) => void
+  onMemberStatusChange? : (m : T.Member, status) => void
 }
 
 function Team ({team, isSelected, onClick, onMemberRemove, onMemberStatusChange} : TeamProps) {

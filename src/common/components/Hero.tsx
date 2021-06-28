@@ -2,6 +2,25 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 
+type HeroProps = {
+  name : string,
+  onClick?: Function,
+}
+
+function Hero ({name, onClick} : HeroProps) {
+  const props = {
+    onClick : () => onClick ? onClick(name) : null,
+    src : 'img/' + name.replace(/ /g, '_') + '_Hero_Portrait.png',
+    alt : name,
+    title : name,
+  }
+  if(onClick){
+    return <ClickableHeroImg {...props} />
+  }
+  return <HeroImg {...props} />
+}
+
+
 const HeroImg = styled.img`
 border-radius: 32px;
 height:64px;
@@ -17,24 +36,5 @@ cursor:pointer;
   opacity:1;
 }
 `
-
-
-function Hero ({name, onClick} : HeroProps) {
-  const props = {
-    onClick : () => onClick ? onClick(name) : null,
-    src : 'img/' + name.replace(/ /g, '_') + '_Hero_Portrait.png',
-    alt : name,
-    title : name,
-  }
-  if(onClick){
-    return <ClickableHeroImg {...props} />
-  }
-  return <HeroImg {...props} />
-}
-
-type HeroProps = {
-  name : string,
-  onClick?: Function,
-}
 
 export default Hero

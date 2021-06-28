@@ -38,12 +38,16 @@ function Game () {
   }
 
   const handleSave = () => {
+    const game : T.Game = {
+      teams : teams
+    }
+
     fetch('/api/game/save', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(teams),
+      body: JSON.stringify(game),
     })
   }
 
