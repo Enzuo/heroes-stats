@@ -4,6 +4,7 @@ import HeroPicker from '@/common/components/HeroPicker'
 import Team from '@/common/components/Team'
 import type * as T from '@/common/types/game'
 import {useState} from 'react'
+import SaveButton from '@/modules/game/components/SaveButton'
 
 
 
@@ -37,18 +38,24 @@ function Game () {
     })
   }
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const game : T.Game = {
       teams : teams
     }
 
-    fetch('/api/game/save', {
+    var res = await fetch('/api/game/save', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(game),
     })
+
+    console.log(res.status)
+    if (res.status === 200) {
+      return true
+    }
+    return false
   }
 
   const teamsList = teams.map((t, i) => 
@@ -66,23 +73,13 @@ function Game () {
       {teamsList}
 
       Victory ? :
-      <Button onClick={handleSave}>Save</Button>
+      <SaveButton onSave={handleSave}></SaveButton>
       <HeroPicker heroes={heroesList} onHeroPick={handleHeroPick}></HeroPicker>
     </div>
   )
 }
 
-const Button = styled.div`
-  background: #2f9ad0;
-  border-radius: 4px;
-  color: white;
-  padding: 5px 8px;
-  display: inline-block;
-  cursor:pointer;
-  &:hover {
-    background:#1688c1;
-  }
-`
+
 
 
 function addHeroToTeam(team : T.Team, hero : T.Hero) : T.Team {
