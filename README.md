@@ -1,7 +1,17 @@
 This is a starter template for [Learn Next.js](https://nextjs.org/learn).
 
-## Database 
 
+## Install
+
+Setup postgres database and enter it in .env
+```
+npm install
+npm run dev
+```
+
+## Database commands
+
+Initial migration
 ```
 npx prisma migrate dev --name init 
 ```
