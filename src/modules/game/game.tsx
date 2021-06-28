@@ -21,10 +21,10 @@ function Game () {
   const [teams, setTeams] = useState(defaultTeams)
   const [teamIndex, setTeamIndex] = useState(0)
 
-  const handleHeroPick = (name) => {
+  const handleHeroPick = (hero) => {
     setTeams(tms => {
       return tms.map((team, index) => {
-        return index === teamIndex ? addHeroToTeam(team, name) : team
+        return index === teamIndex ? addHeroToTeam(team, hero) : team
       })
     })
   }
@@ -85,8 +85,8 @@ const Button = styled.div`
 `
 
 
-function addHeroToTeam(team : T.Team, hero : string) : T.Team {
-  if(!team.members.find( a => a.hero === hero)){
+function addHeroToTeam(team : T.Team, hero : T.Hero) : T.Team {
+  if(!team.members.find( a => a.hero.id === hero.id)){
     if(team.members.length < 5){
       team.members.push({hero, status : {}})
     }
