@@ -8,7 +8,7 @@ import Hero from '@/common/components/Hero'
 type TeamMemberProps = {
   member : Member
   onRemove? : () => void
-  onStatusChange? : (object) => void
+  onStatusChange? : (st : object) => void
 }
 
 function TeamMember({member, onRemove, onStatusChange} : TeamMemberProps) {
