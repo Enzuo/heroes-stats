@@ -1,24 +1,53 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 
 type HeroProps = {
   hero : {id : number, name : string},
   onClick?: Function,
+  onRemove?: Function,
 }
 
-function Hero ({hero, onClick} : HeroProps) {
+function Hero ({hero, onClick, onRemove} : HeroProps) {
   const props = {
-    onClick : () => onClick ? onClick(hero) : null,
     src : 'img/' + hero.name.replace(/ /g, '_') + '_Hero_Portrait.png',
     alt : hero.name,
     title : hero.name,
   }
-  if(onClick){
-    return <ClickableHeroImg {...props} />
-  }
-  return <HeroImg {...props} />
+  const handleClick = () => onClick ? onClick(hero) : null
+
+  return (
+    <HeroWrapper onClick={handleClick}>
+      <HeroImg {...props} />
+      {onRemove && <HeroRemoveButton onClick={onRemove} icon={faTimes} title="Remove"/>}
+    </HeroWrapper>
+  )
 }
+
+const HeroWrapper = styled.div`
+  cursor: ${(props) => props.onClick ? 'pointer' : 'default'};
+  display: inline-block;
+  position:relative;
+`
+
+const HeroRemoveButton = styled(FontAwesomeIcon)`
+  position:absolute;
+  right:1px;
+  top:1px;
+
+  padding: 2px 4px;
+  font-size: 12px;
+  border-radius: 10px;
+  background: black;
+  color: white;
+  border: white 1px solid;
+
+  &:hover {
+    border:#416cff 1px solid;
+    opacity:1;
+  }
+`
 
 
 const HeroImg = styled.img`
@@ -26,15 +55,14 @@ border-radius: 32px;
 height:64px;
 width:64px;
 border:#ffc500 1px solid;
-`
-
-const ClickableHeroImg = styled(HeroImg)`
-opacity:0.8;
-cursor:pointer;
 &:hover {
   border:#416cff 1px solid;
   opacity:1;
 }
+`
+
+const ClickableHeroImg = styled(HeroImg)`
+
 `
 
 export default Hero

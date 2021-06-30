@@ -22,8 +22,7 @@ function TeamMember({member, onRemove, onStatusChange} : TeamMemberProps) {
 
   return (
     <StyledTeamMember>
-      <StyledButton onClick={onRemove} icon={faTimesCircle} title="Remove"/>
-      <Hero hero={member.hero}></Hero>
+      <Hero onRemove={onRemove} hero={member.hero}></Hero>
       <StyledButton selected={member.status.impact === 1} onClick={() => {handleImpactClick(1)}} icon={faThumbsUp} title="Good impact for his team" />
       <StyledButton selected={member.status.impact === -1} onClick={() => {handleImpactClick(-1)}} icon={faThumbsDown} title="Not really useful for his team" />
       <StyledButton selected={member.status.synergy === 1} onClick={() => {handleSynergyClick()}} icon={faLink} title="Good synergy with another member of his team" />

@@ -16,7 +16,7 @@ function Team ({team, isSelected, onClick, onMemberRemove, onMemberStatusChange}
     <TeamMember 
       key={i} 
       member={member} 
-      onRemove={() => onMemberRemove(member)} 
+      onRemove={onMemberRemove ? () => onMemberRemove(member) : null} 
       onStatusChange={(st) => onMemberStatusChange(member, st)}
     />
   ))

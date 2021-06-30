@@ -38,6 +38,10 @@ function Game () {
     })
   }
 
+  const handleMemberRemove = (tmIndex, member) => {
+
+  }
+
   const handleSave = async () => {
     const game : T.Game = {
       teams : teams
@@ -64,6 +68,8 @@ function Game () {
       team={t} 
       isSelected={i === teamIndex} 
       onClick={() => setTeamIndex(i)}
+      // TODO onTeamChange to hide away team management functions
+      onMemberRemove={(member) => handleMemberRemove(i, member)}
       onMemberStatusChange={(member, status) => handleMemberStatus(i, member, status)}
     ></Team>
   )
