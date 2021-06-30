@@ -17,6 +17,12 @@ function HeroesList ({heroes, sortBy, onHeroClick}) {
         }
         return a.type < b.type ? -1 : 1
       }
+      if(sortBy === 'universe'){
+        if(a.universe === b.universe){
+          return a.name < b.name ? -1 : 1
+        }
+        return a.universe < b.universe ? -1 : 1
+      }
     })
   }
 
