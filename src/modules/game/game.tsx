@@ -5,6 +5,7 @@ import Team from '@/common/components/Team'
 import type * as T from '@/common/types/game'
 import {useState} from 'react'
 import SaveButton from '@/modules/game/components/SaveButton'
+import { isTemplateSpan } from 'typescript'
 
 
 
@@ -39,7 +40,11 @@ function Game () {
   }
 
   const handleMemberRemove = (tmIndex, member) => {
-
+    setTeams(tms => {
+      return tms.map((team, index) => {
+        return index === tmIndex ? removeTeamMember(teams[tmIndex], member) : team
+      })
+    })
   }
 
   const handleSave = async () => {
@@ -100,6 +105,14 @@ function addHeroToTeam(team : T.Team, hero : T.Hero) : T.Team {
 function changeMemberStatus(team: T.Team, member : T.Member, status: object) {
   var memb = team.members.find(a => a.hero === member.hero)
   memb.status = {...memb.status, ...status}
+  return team
+}
+
+function removeTeamMember(team: T.Team, member) {
+  var memberIndex = team.members.findIndex(a => a === member)
+  if(memberIndex >= 0){
+    team.members.splice(memberIndex, 1)
+  }
   return team
 }
 
