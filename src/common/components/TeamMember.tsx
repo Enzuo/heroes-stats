@@ -24,7 +24,7 @@ function TeamMember({member, onRemove, onStatusChange} : TeamMemberProps) {
     <StyledTeamMember>
       <Hero onRemove={onRemove} hero={member.hero}></Hero>
       <StyledButton selected={member.status.impact === 1} onClick={() => {handleImpactClick(1)}} icon={faThumbsUp} title="Good impact for his team" />
-      <StyledButton selected={member.status.impact === -1} onClick={() => {handleImpactClick(-1)}} icon={faThumbsDown} title="Not really useful for his team" />
+      <StyledButton color="red" selected={member.status.impact === -1} onClick={() => {handleImpactClick(-1)}} icon={faThumbsDown} title="Not really useful for his team" />
       <StyledButton selected={member.status.synergy === 1} onClick={() => {handleSynergyClick()}} icon={faLink} title="Good synergy with another member of his team" />
     </StyledTeamMember>
   )
@@ -32,12 +32,19 @@ function TeamMember({member, onRemove, onStatusChange} : TeamMemberProps) {
 
 
 const StyledButton = styled(FontAwesomeIcon)`
-  color: ${(props) => props.selected ? 'blue' : 'grey'};
+  color: ${(props) => props.selected ? props.color || 'blue' : 'grey'};
+  padding:2px;
+  cursor:pointer;
+
+  &:hover {
+    color:${(props) => props.color || 'blue'};
+  }
 `
 
 const StyledTeamMember = styled.div`
   display:flex;
   flex-direction:column;
+  align-items:center;
 `
 
 export default TeamMember
