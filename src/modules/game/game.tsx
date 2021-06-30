@@ -1,7 +1,7 @@
 import heroesList from '@/common/heroes.json'
 import styled from 'styled-components'
 import HeroPicker from '@/common/components/HeroPicker'
-import Team from '@/common/components/Team'
+import Team from '@/modules/game/components/Team'
 import type * as T from '@/common/types/game'
 import {useState} from 'react'
 import SaveButton from '@/modules/game/components/SaveButton'

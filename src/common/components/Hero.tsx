@@ -26,12 +26,12 @@ function Hero ({hero, onClick, onRemove} : HeroProps) {
 }
 
 const HeroWrapper = styled.div`
-  border-radius: 35px;
+  border-radius: 33px;
   height: 66px;
   width: 66px;
-  padding: 2px;
+  margin: 2px;
   &:hover {
-    background: #055279;
+    box-shadow: 0px 0px 3px #055279;
   }
 
   cursor: ${(props) => props.onClick ? 'pointer' : 'default'};
