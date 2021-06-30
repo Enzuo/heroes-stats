@@ -21,28 +21,20 @@ function Game () {
     members : []
   }]
   const [teams, setTeams] = useState(defaultTeams)
-  const [teamIndex, setTeamIndex] = useState(0)
+  const [selectedTeamIndex, setSelectedTeamIndex] = useState(0)
 
   const handleHeroPick = (hero) => {
     setTeams(tms => {
       return tms.map((team, index) => {
-        return index === teamIndex ? addHeroToTeam(team, hero) : team
+        return index === selectedTeamIndex ? addHeroToTeam(team, hero) : team
       })
     })
   }
 
-  const handleMemberStatus = (tmIndex, member, status) => {
+  const handleTeamChange = (teamIndex, changedTeam) => {
     setTeams(tms => {
       return tms.map((team, index) => {
-        return index === tmIndex ? changeMemberStatus(team, member, status) : team
-      })
-    })
-  }
-
-  const handleMemberRemove = (tmIndex, member) => {
-    setTeams(tms => {
-      return tms.map((team, index) => {
-        return index === tmIndex ? removeTeamMember(teams[tmIndex], member) : team
+        return index === teamIndex ? changedTeam : team
       })
     })
   }
@@ -71,11 +63,9 @@ function Game () {
     <Team 
       key={i} 
       team={t} 
-      isSelected={i === teamIndex} 
-      onClick={() => setTeamIndex(i)}
-      // TODO onTeamChange to hide away team management functions
-      onMemberRemove={(member) => handleMemberRemove(i, member)}
-      onMemberStatusChange={(member, status) => handleMemberStatus(i, member, status)}
+      isSelected={i === selectedTeamIndex} 
+      onClick={() => setSelectedTeamIndex(i)}
+      onTeamChange={(team) => handleTeamChange(i, team)}
     ></Team>
   )
 
@@ -102,18 +92,5 @@ function addHeroToTeam(team : T.Team, hero : T.Hero) : T.Team {
   return team
 }
 
-function changeMemberStatus(team: T.Team, member : T.Member, status: object) {
-  var memb = team.members.find(a => a.hero === member.hero)
-  memb.status = {...memb.status, ...status}
-  return team
-}
-
-function removeTeamMember(team: T.Team, member) {
-  var memberIndex = team.members.findIndex(a => a === member)
-  if(memberIndex >= 0){
-    team.members.splice(memberIndex, 1)
-  }
-  return team
-}
 
 export default Game
