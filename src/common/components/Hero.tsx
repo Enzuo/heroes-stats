@@ -26,8 +26,17 @@ function Hero ({hero, onClick, onRemove} : HeroProps) {
 }
 
 const HeroWrapper = styled.div`
+  border-radius: 35px;
+  height: 66px;
+  width: 66px;
+  padding: 2px;
+  &:hover {
+    background: #055279;
+  }
+
   cursor: ${(props) => props.onClick ? 'pointer' : 'default'};
   display: inline-block;
+
   position:relative;
 `
 
@@ -67,10 +76,9 @@ const HeroImg = styled.img`
 border-radius: 32px;
 height:64px;
 width:64px;
-border:#ffc500 1px solid;
+border:#9c7900 1px solid;
 &:hover {
-  border:#416cff 1px solid;
-  opacity:1;
+  border:#65aae2 1px solid;
 }
 `
 
