@@ -24,20 +24,20 @@ function TeamMember({member, onRemove, onStatusChange} : TeamMemberProps) {
     <StyledTeamMember>
       <Hero onRemove={onRemove} hero={member.hero}></Hero>
       <StyledButton selected={member.status.impact === 1} onClick={() => {handleImpactClick(1)}} icon={faThumbsUp} title="Good impact for his team" />
-      <StyledButton color="red" selected={member.status.impact === -1} onClick={() => {handleImpactClick(-1)}} icon={faThumbsDown} title="Not really useful for his team" />
-      <StyledButton selected={member.status.synergy === 1} onClick={() => {handleSynergyClick()}} icon={faLink} title="Good synergy with another member of his team" />
+      <StyledButton color="#ff5858" selected={member.status.impact === -1} onClick={() => {handleImpactClick(-1)}} icon={faThumbsDown} title="Not really useful for his team" />
+      <StyledButton color="#fde740" selected={member.status.synergy === 1} onClick={() => {handleSynergyClick()}} icon={faLink} title="Good synergy with another member of his team" />
     </StyledTeamMember>
   )
 }
 
 
 const StyledButton = styled(FontAwesomeIcon)`
-  color: ${(props) => props.selected ? props.color || 'blue' : 'grey'};
-  padding:2px;
+  color: ${(props) => props.selected ? props.color || '#50ceff' : 'grey'};
+  padding:4px;
   cursor:pointer;
 
   &:hover {
-    color:${(props) => props.color || 'blue'};
+    color:${(props) => props.color || '#50ceff'};
   }
 `
 

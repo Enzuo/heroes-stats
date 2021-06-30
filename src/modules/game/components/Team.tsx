@@ -48,8 +48,13 @@ function Team ({team, isSelected, onClick, onTeamChange} : TeamProps) {
 
 
 const StyledTeam = styled.div`
-  border: ${(props) => props.selected ? '1px red solid' : ''} 
-
+  padding:10px;
+  width:400px;
+  margin:10px;
+  background-color: #0a1133;
+  border: 1px solid rgba(153,204,255,.2);
+  box-shadow: 0 0 15px 6px rgb(0 0 0 / 40%);
+  border-color: ${(props) => props.selected ? 'rgba(153,204,255,.8)' : ''} 
 `
 
 const StyledMember = styled.div`

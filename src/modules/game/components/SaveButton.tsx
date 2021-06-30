@@ -23,14 +23,22 @@ function SaveButton ({onSave} : SaveButtonProps) {
 }
 
 const Button = styled.div`
-  background: #2f9ad0;
-  border-radius: 4px;
-  color: white;
-  padding: 5px 8px;
-  display: inline-block;
+  border: 1px solid #39f;
+  color: #39f;
+  background-color: rgba(0,26,51,.9);
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+
   cursor:pointer;
+
+  margin: 10px;
+  padding: .5em 1.2em;
+  display: inline-block;
+
   &:hover {
-    background:#1688c1;
+    background-color: #036;
+    color: #fff;
   }
 `
 

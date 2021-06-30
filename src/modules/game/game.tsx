@@ -71,15 +71,27 @@ function Game () {
   )
 
   return (
-    <div>
+    <GameWrapper>
+      <Teams>
       {teamsList}
+      </Teams>
 
       Victory ? :
       {hasMembers(teams) && <SaveButton onSave={handleSave}></SaveButton>}
       <HeroPicker heroes={heroesList} onHeroPick={handleHeroPick}></HeroPicker>
-    </div>
+    </GameWrapper>
   )
 }
+
+const Teams = styled.div`
+  display:flex;
+`
+
+const GameWrapper = styled.div`
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+`
 
 
 
