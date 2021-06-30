@@ -2,27 +2,31 @@ import {useState} from 'react'
 import styled from 'styled-components'
 import { HERO_SORT } from '@/common/constants'
 
+const sortChoices = Object.values(HERO_SORT)
+
 function SortPicker ({onChange}) {
   const handleClick = () => {
     var newIndex = selectedSort + 1
-    if(newIndex >= HERO_SORT.length){
+    if(newIndex >= sortChoices.length){
       newIndex = 0
     }
     setSelectedSort(newIndex)
-    onChange(HERO_SORT[newIndex])
+    onChange(sortChoices[newIndex].key)
   }
 
   const [selectedSort, setSelectedSort] = useState(0)
 
   return (
-    <Sort onClick={handleClick}>{HERO_SORT[selectedSort]}</Sort>
+    <Sort index={selectedSort} onClick={handleClick}>{sortChoices[selectedSort].shortlbl}</Sort>
   )
 }
 
 const Sort = styled.div`
+  cursor:pointer;
   border: 1px solid #39f;
   color: #39f;
   background-color: rgba(0,26,51,.9);
+  ${(props) => !props.index ? 'border-color: #666; color:#666;' : '' }
 
   display: block;
   padding: 10px 0;
