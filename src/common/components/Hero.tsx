@@ -43,9 +43,22 @@ const HeroRemoveButton = styled(FontAwesomeIcon)`
   color: white;
   border: white 1px solid;
 
+  @keyframes spin {
+    from {
+      transform: rotate(-8deg);
+    }
+  
+    to {
+      transform: rotate(8deg);
+    }
+  }
+  animation-duration: 0.3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+
   &:hover {
-    border:#416cff 1px solid;
-    opacity:1;
+    animation-name: spin;
   }
 `
 
