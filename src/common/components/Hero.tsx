@@ -19,26 +19,69 @@ function Hero ({hero, onClick, onRemove} : HeroProps) {
 
   return (
     <HeroWrapper onClick={handleClick}>
-      <HeroImg {...props} />
+      <CircleIcon >
+        <HeroImg {...props} />
+      </CircleIcon>
       {onRemove && <HeroRemoveButton onClick={onRemove} icon={faTimes} title="Remove"/>}
     </HeroWrapper>
   )
 }
 
-const HeroWrapper = styled.div`
-  border-radius: 33px;
-  height: 66px;
-  width: 66px;
-  margin: 2px;
-  &:hover {
-    box-shadow: 0px 0px 3px 2px #055279;
-  }
 
+
+
+const CircleIcon = styled.div`
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+
+
+  box-shadow: 0 0 6px 1px rgb(0 0 0 / 60%);
+  border:2px solid rgba(51,153,255,.4);
+  overflow:hidden;
+
+  &:hover {
+    border-color: rgba(51,128,204,.8);
+  }
+  
+  &:after {
+    position:absolute;
+    content: " ";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    display:block;
+  }
+  &:hover:after {
+    background-color: rgba(0,128,255,.1);
+    background-image: linear-gradient(
+      0deg
+      ,rgba(71,153,235,.6) 0,rgba(71,153,235,0) 40%);
+  }
+`
+
+
+const HeroImg = styled.img`
+  height:64px;
+  width:64px;
+  transition: transform .2s;
+`
+
+const HeroWrapper = styled.div`
   cursor: ${(props) => props.onClick ? 'pointer' : 'default'};
   display: inline-block;
+  margin: 2px;
 
   position:relative;
+
+  &:hover ${HeroImg} {
+    transform: scale(1.1) perspective(1px);
+  }
 `
+
+
 
 const HeroRemoveButton = styled(FontAwesomeIcon)`
   position:absolute;
@@ -47,10 +90,12 @@ const HeroRemoveButton = styled(FontAwesomeIcon)`
 
   padding: 2px 4px;
   font-size: 12px;
-  border-radius: 10px;
+  border-radius: 50%;
   background: black;
   color: white;
   border: white 1px solid;
+
+  cursor:pointer;
 
   @keyframes spin {
     from {
@@ -71,19 +116,5 @@ const HeroRemoveButton = styled(FontAwesomeIcon)`
   }
 `
 
-
-const HeroImg = styled.img`
-border-radius: 32px;
-height:64px;
-width:64px;
-border:#9c7900 1px solid;
-&:hover {
-  border:#65aae2 1px solid;
-}
-`
-
-const ClickableHeroImg = styled(HeroImg)`
-
-`
 
 export default Hero
