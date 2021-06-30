@@ -1,5 +1,4 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
-
+Heroes stats let you save matches and a brief overall impression of the match, in order to improve your future drafts.
 
 ## Install
 
