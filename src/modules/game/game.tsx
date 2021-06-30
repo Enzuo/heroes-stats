@@ -54,6 +54,7 @@ function Game () {
 
     console.log(res.status)
     if (res.status === 200) {
+      setTeams(defaultTeams) // reset
       return true
     }
     return false
@@ -74,7 +75,7 @@ function Game () {
       {teamsList}
 
       Victory ? :
-      <SaveButton onSave={handleSave}></SaveButton>
+      {hasMembers(teams) && <SaveButton onSave={handleSave}></SaveButton>}
       <HeroPicker heroes={heroesList} onHeroPick={handleHeroPick}></HeroPicker>
     </div>
   )
@@ -82,6 +83,9 @@ function Game () {
 
 
 
+function hasMembers(teams : T.Team[]) {
+  return teams[0].members.length && teams[1].members.length
+}
 
 function addHeroToTeam(team : T.Team, hero : T.Hero) : T.Team {
   if(!team.members.find( a => a.hero.id === hero.id)){
