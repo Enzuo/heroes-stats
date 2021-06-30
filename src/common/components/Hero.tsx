@@ -31,7 +31,7 @@ const HeroWrapper = styled.div`
   width: 66px;
   margin: 2px;
   &:hover {
-    box-shadow: 0px 0px 3px #055279;
+    box-shadow: 0px 0px 3px 2px #055279;
   }
 
   cursor: ${(props) => props.onClick ? 'pointer' : 'default'};
