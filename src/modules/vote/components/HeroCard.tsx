@@ -3,9 +3,10 @@ import type * as T from '@/common/types/game'
 
 type HeroCardProps = {
   hero : T.Hero
+  index : number
 }
 
-function HeroCard ({hero} : HeroCardProps) {
+function HeroCard ({hero, index} : HeroCardProps) {
 
   const imgProps = {
     src : 'img/' + hero.name.replace(/ /g, '_') + '_Hero_Portrait.png',
@@ -14,7 +15,7 @@ function HeroCard ({hero} : HeroCardProps) {
   }
 
   return (
-    <Card>
+    <Card index={index}>
       <ImgWrapper>
         <HeroImg {...imgProps} />
       </ImgWrapper>
@@ -23,8 +24,7 @@ function HeroCard ({hero} : HeroCardProps) {
       </AnimatedCrownWrapper>
       <HeroName>
         {hero.name}
-      </HeroName>
-      
+      </HeroName> 
     </Card>
   )
 }
@@ -33,6 +33,7 @@ const HeroImg = styled.img`
   height:125px;
   width:125px;
   transition: transform .2s;
+  box-shadow: 0 0 5px 0 #3394b1;
 `
 
 const AnimatedCrownWrapper = styled.div`
@@ -70,6 +71,21 @@ const Card = styled.div`
 
   &:hover ${AnimatedCrownWrapper} {
     display:block;
+  }
+
+  opacity:0;
+  animation: pop-in .5s ease-out forwards;
+  ${(props) => 'animation-delay:'+props.index+'s;'}
+
+  @keyframes pop-in{
+    from {
+      opacity:0;
+      top:300px;
+    }
+    to {
+      opacity:1;
+      top:0px;
+    }
   }
 `
 

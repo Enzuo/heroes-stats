@@ -22,7 +22,7 @@ function Vote ({} : VoteProps) {
     <div>
       Pick your favorite
       <HeroesList>
-        {heroes.map(h => <HeroCard key={h.key} hero={h}></HeroCard>)}
+        {heroes.map((h, i) => <HeroCard key={h.key} index={i} hero={h}></HeroCard>)}
       </HeroesList>
     </div>
   )
