@@ -23,5 +23,14 @@ export const api = {
       },
       body: JSON.stringify(data),
     })
-  }
+  },
+  get : (api, params) => { 
+    var queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
+    return fetch('/api/'+api+'?'+queryString , {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  },
 }
