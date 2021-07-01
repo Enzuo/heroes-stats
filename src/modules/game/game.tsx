@@ -3,7 +3,7 @@ import {useState} from 'react'
 import styled from 'styled-components'
 import Team from '@/modules/game/components/Team'
 import SaveButton from '@/modules/game/components/SaveButton'
-import heroesList from '@/common/heroes.json'
+import HEROES_LIST from '@/common/heroes.json'
 import HeroPicker from '@/common/components/HeroPicker'
 import Toggle from '@/common/components/Toggle'
 import type * as T from '@/common/types/game'
@@ -83,7 +83,7 @@ function Game () {
 
       <Toggle name="Victory" value={isVictory} onChange={(val) => setVictory(val)}></Toggle>
       {hasMembers(teams) && <SaveButton onSave={handleSave}></SaveButton>}
-      <HeroPicker heroes={heroesList} onHeroPick={handleHeroPick}></HeroPicker>
+      <HeroPicker heroes={HEROES_LIST} onHeroPick={handleHeroPick}></HeroPicker>
     </GameWrapper>
   )
 }

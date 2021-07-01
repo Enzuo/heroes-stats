@@ -1,4 +1,4 @@
-import GameModule from '@/modules/game/game'
+import GameModule from '@/modules/game/Game'
 
 function Game () { 
   return (
