@@ -60,10 +60,10 @@ model VoteRound {
 }
 
 model HeroVote {
-  heroId   Int
+  id       Int    @map("heroId")
   voteId   Int
   isPicked Boolean
 
-  @@id([voteId, heroId])
+  @@id([id, voteId])
   vote VoteRound @relation(fields: [voteId], references: [id])
 }

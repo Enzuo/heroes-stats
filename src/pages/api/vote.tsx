@@ -46,7 +46,7 @@ async function saveVote({elapsedTime, userUid, heroes} : T.VoteRound){
       },
 
       heroes : {
-        create : heroes.map(h => {return {heroId : h.id, isPicked : h.isPicked}})
+        create : heroes
       }
     }
   })

@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import type * as T from '@/common/types/game'
+import { calculateRankFromVotes } from '@/common/utils/vote'
 
 const prisma = new PrismaClient()
 
@@ -13,8 +14,9 @@ export default async function handler(req, res) {
   switch(method){
     case 'GET':
       try {
-        const result = await list(userUid);
-        res.status(200).json(result)
+        const votes = await getHeroesVoteForUser(userUid);
+        const heroes = calculateRankFromVotes(votes)
+        res.status(200).json(heroes)
       }
       catch(e){
         console.error(e)
@@ -27,8 +29,9 @@ export default async function handler(req, res) {
   }
 }
 
-async function list (uuid) {
-  const result = await prisma.game.findMany({
+
+async function getHeroesVoteForUser (uuid) {
+  const result = await prisma.voteRound.findMany({
     where : {
       user : {
         uuid : {
@@ -37,9 +40,9 @@ async function list (uuid) {
       }
     },
     include: {
-      user: true,
       heroes: true,
     },
   })
   return result
 }
+      
