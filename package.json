@@ -17,7 +17,8 @@
     "next": "^11.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/react": "^17.0.11",

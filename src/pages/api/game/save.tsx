@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client'
-import { isCatchClause } from 'typescript';
 import type * as T from '@/common/types/game'
 
 const prisma = new PrismaClient()
@@ -47,8 +46,17 @@ async function save(game : T.Game) {
   await prisma.game.create({
     data : {
       type : 1,
+      user : {
+        connectOrCreate: {
+          create: {
+            uuid: game.userId,
+          },
+          where: {
+            uuid: game.userId,
+          },
+        },
+      },
       isVictory : game.isVictory,
-      createdBy : 12,
       heroes : {
         create : heroes
       }

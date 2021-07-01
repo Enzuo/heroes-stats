@@ -1,11 +1,12 @@
-import heroesList from '@/common/heroes.json'
+import { v4 as uuidv4 } from 'uuid'
+import {useState} from 'react'
 import styled from 'styled-components'
+import Team from '@/modules/game/components/Team'
+import SaveButton from '@/modules/game/components/SaveButton'
+import heroesList from '@/common/heroes.json'
 import HeroPicker from '@/common/components/HeroPicker'
 import Toggle from '@/common/components/Toggle'
-import Team from '@/modules/game/components/Team'
 import type * as T from '@/common/types/game'
-import {useState} from 'react'
-import SaveButton from '@/modules/game/components/SaveButton'
 
 
 
@@ -44,6 +45,7 @@ function Game () {
   const handleSave = async () => {
     const game : T.Game = {
       teams : teams,
+      userId : getUserId(),
       isVictory : isVictory,
     }
 
@@ -112,6 +114,16 @@ function addHeroToTeam(team : T.Team, hero : T.Hero) : T.Team {
   }
   return team
 }
+
+function getUserId() {
+  var userId = window.localStorage.getItem('userId')
+  if(!userId){
+    userId = uuidv4()
+    window.localStorage.setItem('userId', userId)
+  }
+  return userId
+}
+
 
 
 export default Game

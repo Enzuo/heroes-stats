@@ -23,4 +23,5 @@ export interface Team {
 export interface Game {
   teams : Team[]
   isVictory : boolean
+  userId : string
 }
