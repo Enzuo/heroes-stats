@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 
 export default async function handler(req, res) {
   const {
-    query: { userId },
+    query: { userUid },
     method,
   } = req
 
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   switch(method){
     case 'GET':
       try {
-        const result = await list(userId);
+        const result = await list(userUid);
         res.status(200).json(result)
       }
       catch(e){

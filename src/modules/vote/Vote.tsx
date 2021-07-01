@@ -1,7 +1,9 @@
 import {useEffect, useState} from 'react'
 import styled from 'styled-components'
+import { api, getUserUid } from '@/common/utils'
 import HEROES_LIST from '@/common/heroes.json'
 import HeroCard from '@/modules/vote/components/HeroCard'
+import type * as T from '@/common/types/game'
 
 type VoteProps = {
   
@@ -22,7 +24,19 @@ function Vote ({} : VoteProps) {
     setHeroes(heroes)
   }
 
-  const handleClick = () => {
+  const handleClick = (index) => {
+    // save
+    const voteRound : T.VoteRound = {
+      userUid: getUserUid(),
+      elapsedTime: 0,
+      heroes : heroes.map((h,i) => { return { 
+        id : h.id, 
+        isPicked: index === i 
+      }})
+    }
+
+    api.post('vote/', voteRound)
+
     generateRound()
   }
 
@@ -30,7 +44,7 @@ function Vote ({} : VoteProps) {
     <div>
       Pick your favorite
       <HeroesList>
-        {heroes.map((h, i) => <HeroCard key={h.key} index={i} hero={h} onClick={handleClick}></HeroCard>)}
+        {heroes.map((h, i) => <HeroCard key={h.key} index={i} hero={h} onClick={() => handleClick(i)}></HeroCard>)}
       </HeroesList>
     </div>
   )

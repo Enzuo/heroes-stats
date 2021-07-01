@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   switch (method) {
     case 'POST':
       try {
-        await save(body);
+        await saveGame(body);
         res.status(200).json({ id, name: name || `User ${id}` })
       }
       catch(e){
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
   }
 }
 
-async function save(game : T.Game) {
+async function saveGame(game : T.Game) {
   const heroes = game.teams.reduce((heroes, a, teamIndex) => {
     const heroesOfTeam = a.members.map((m, memberIndex) => { 
       return {
@@ -49,10 +49,10 @@ async function save(game : T.Game) {
       user : {
         connectOrCreate: {
           create: {
-            uuid: game.userId,
+            uuid: game.userUid,
           },
           where: {
-            uuid: game.userId,
+            uuid: game.userUid,
           },
         },
       },

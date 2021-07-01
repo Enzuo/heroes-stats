@@ -34,6 +34,25 @@ CREATE TABLE "User" (
     PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "VoteRound" (
+    "id" SERIAL NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "elapsedTime" INTEGER NOT NULL,
+
+    PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "HeroVote" (
+    "heroId" INTEGER NOT NULL,
+    "voteId" INTEGER NOT NULL,
+    "isPicked" BOOLEAN NOT NULL,
+
+    PRIMARY KEY ("voteId","heroId")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User.uuid_unique" ON "User"("uuid");
 
@@ -42,3 +61,9 @@ ALTER TABLE "Game" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE 
 
 -- AddForeignKey
 ALTER TABLE "GameHero" ADD FOREIGN KEY ("gameId") REFERENCES "Game"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "VoteRound" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "HeroVote" ADD FOREIGN KEY ("voteId") REFERENCES "VoteRound"("id") ON DELETE CASCADE ON UPDATE CASCADE;

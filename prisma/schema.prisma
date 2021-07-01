@@ -46,4 +46,24 @@ model User {
   uuid      String   @unique
 
   games     Game[]
+  votes     VoteRound[]
+}
+
+model VoteRound {
+  id          Int      @default(autoincrement()) @id
+  userId      Int
+  createdAt   DateTime @default(now())
+  elapsedTime Int
+
+  heroes    HeroVote[]
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model HeroVote {
+  heroId   Int
+  voteId   Int
+  isPicked Boolean
+
+  @@id([voteId, heroId])
+  vote VoteRound @relation(fields: [voteId], references: [id])
 }
