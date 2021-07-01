@@ -7,9 +7,9 @@ export default async function handler(req, res) {
   const {
     query: { id, name },
     method,
+    body,
   } = req
   // const body = JSON.parse(req.body)
-  const body = req.body
 
 
   switch (method) {
