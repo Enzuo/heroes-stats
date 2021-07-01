@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react'
+import styled from 'styled-components'
 import HEROES_LIST from '@/common/heroes.json'
 import HeroCard from '@/modules/vote/components/HeroCard'
 
@@ -20,10 +21,19 @@ function Vote ({} : VoteProps) {
   return (
     <div>
       Pick your favorite
-      {heroes.map(h => <HeroCard key={h.key} hero={h}></HeroCard>)}
+      <HeroesList>
+        {heroes.map(h => <HeroCard key={h.key} hero={h}></HeroCard>)}
+      </HeroesList>
     </div>
   )
 }
+
+const HeroesList = styled.div`
+  display:flex;
+  flex-direction:row;
+  justify-content: space-evenly;
+  margin:50px;
+`
 
 function uniqueRandom(length){
   var nb=3

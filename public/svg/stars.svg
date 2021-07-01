@@ -1,0 +1,16 @@
+<?xml-stylesheet type="text/css" href="anim.css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="163.645" height="196.618" viewBox="0 0 43.298 52.022">
+    <defs>
+        <linearGradient id="a">
+            <stop offset="0" stop-color="#fec502"/>
+            <stop offset="1" stop-color="#fefbb9" stop-opacity=".934"/>
+        </linearGradient>
+        <linearGradient gradientUnits="userSpaceOnUse" y2="93.687" x2="63.871" y1="102.188" x1="69.092" id="b" xlink:href="#a" gradientTransform="translate(-47.708 -91.833)"/>
+        <linearGradient gradientTransform="matrix(.62699 0 0 .62699 -8.363 -52.262)" y2="93.687" x2="63.871" y1="102.188" x1="69.092" gradientUnits="userSpaceOnUse" id="d" xlink:href="#a"/>
+        <linearGradient gradientTransform="matrix(.68748 0 0 .68748 -37.35 -58.83)" y2="93.687" x2="63.871" y1="102.188" x1="69.092" gradientUnits="userSpaceOnUse" id="c" xlink:href="#a"/>
+    </defs>
+    <path id="star_1" d="M25.666 12.48l-3.847-2.17-3.968 1.94.874-4.329-3.07-3.174 4.387-.507L22.112.34l1.837 4.016 4.35.763-3.251 2.989.618 4.373" fill="url(#b)" stroke="#820000" stroke-width=".3"/>
+    <path id="star_2" d="M13.179 11.219l-3.03.202-1.55 2.61-1.13-2.818-2.961-.668L6.84 8.6l-.28-3.023 2.57 1.617 2.789-1.2-.744 2.943 2.004 2.282" fill="url(#c)" stroke="#820000" stroke-width=".3"/>
+    <path id="star_3" d="M37.72 11.624l-2.763.184-1.415 2.381-1.03-2.57-2.7-.61 2.126-1.773-.255-2.758 2.344 1.475 2.544-1.095-.679 2.685 1.828 2.08" fill="url(#d)" stroke="#820000" stroke-width=".3"/>
+</svg>
+
