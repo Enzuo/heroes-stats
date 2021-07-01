@@ -34,7 +34,6 @@ const HeroImg = styled.img`
   height:125px;
   width:125px;
   transition: transform .2s;
-  box-shadow: 0 0 5px 0 #3394b1;
 `
 
 const AnimatedCrownWrapper = styled.div`
@@ -64,6 +63,7 @@ const Card = styled.div`
     rgba(243,0,255,0) 100%
   );
   min-height:200px;
+  width:125px;
   cursor:pointer;
 
   &:hover ${HeroImg} {
@@ -81,11 +81,11 @@ const Card = styled.div`
   @keyframes pop-in{
     from {
       opacity:0;
-      top:300px;
+      transform:translateY(300px);
     }
     to {
       opacity:1;
-      top:0px;
+      transform:translateY(0px);
     }
   }
 `
