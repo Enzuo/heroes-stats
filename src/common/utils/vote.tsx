@@ -1,5 +1,9 @@
 import type * as T from '@/common/types/game'
 
+// This calculation method gives a lot of importance to the last votes, 
+// You can never have voted for one hero but the last vote you picked him over your number 1 
+// and he becomes your new number 1 even if he was number 100 before
+// Doesn't take into account your voting history
 export function calculateRankFromVotes(votes : T.VoteRound[]) {
   const heroesLadder = votes.reduce((ladder, vote) => {
     const pickedHero = vote.heroes.reduce((arr, h) => h.isPicked ? arr : h.id, null)
