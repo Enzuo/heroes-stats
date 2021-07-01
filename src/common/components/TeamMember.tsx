@@ -49,7 +49,7 @@ const StyledTeamMember = styled.div`
   padding:2px;
   margin:2px;
 
-  ${(props) => props.isUser ? 'background: #fffdf833; box-shadow: 0 0 5px 0px #005da9;' : ''}
+  ${(props) => props.isUser ? 'background: #04abff33; box-shadow: 0 0 5px 0px #000;' : ''}
 `
 
 export default TeamMember
