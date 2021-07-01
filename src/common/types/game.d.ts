@@ -27,7 +27,7 @@ export interface Game {
 }
 
 export interface VoteRound {
-  userUid : string
-  elapsedTime : number
+  userUid? : string
+  elapsedTime? : number
   heroes : { id : number, isPicked : boolean }[]
 }
