@@ -1,9 +1,11 @@
 -- CreateTable
 CREATE TABLE "Game" (
     "id" SERIAL NOT NULL,
-    "type" INTEGER NOT NULL DEFAULT 1,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "type" INTEGER NOT NULL DEFAULT 1,
+    "rank" INTEGER NOT NULL DEFAULT 0,
+    "isVictory" BOOLEAN NOT NULL DEFAULT false,
     "createdBy" INTEGER NOT NULL,
 
     PRIMARY KEY ("id")

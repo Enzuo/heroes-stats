@@ -12,10 +12,12 @@ generator client {
 
 model Game {
   id        Int      @default(autoincrement()) @id
-  type      Int      @default(1) // SL; QM, ARAM
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  type      Int      @default(1) // SL; QM, ARAM
+  rank      Int      @default(0)
+  isVictory Boolean  @default(false)
   createdBy Int      // User id
   
   heroes   GameHero[]

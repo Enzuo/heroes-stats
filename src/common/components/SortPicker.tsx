@@ -34,6 +34,11 @@ const Sort = styled.div`
   text-align: center;
   text-transform: uppercase;
   font-size: 0.7em;
+
+  &:hover {
+    background-color: #036;
+    color: #fff;
+  }
 `
 
 

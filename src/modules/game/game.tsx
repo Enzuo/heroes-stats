@@ -1,11 +1,11 @@
 import heroesList from '@/common/heroes.json'
 import styled from 'styled-components'
 import HeroPicker from '@/common/components/HeroPicker'
+import Toggle from '@/common/components/Toggle'
 import Team from '@/modules/game/components/Team'
 import type * as T from '@/common/types/game'
 import {useState} from 'react'
 import SaveButton from '@/modules/game/components/SaveButton'
-import { isTemplateSpan } from 'typescript'
 
 
 
@@ -22,6 +22,7 @@ function Game () {
     members : []
   }]
   const [teams, setTeams] = useState(defaultTeams)
+  const [isVictory, setVictory] = useState(false)
   const [selectedTeamIndex, setSelectedTeamIndex] = useState(0)
 
   const handleHeroPick = (hero) => {
@@ -42,7 +43,8 @@ function Game () {
 
   const handleSave = async () => {
     const game : T.Game = {
-      teams : teams
+      teams : teams,
+      isVictory : isVictory,
     }
 
     var res = await fetch('/api/game/save', {
@@ -53,9 +55,9 @@ function Game () {
       body: JSON.stringify(game),
     })
 
-    console.log(res.status)
     if (res.status === 200) {
       setTeams(defaultTeams) // reset
+      setVictory(false)
       return true
     }
     return false
@@ -77,7 +79,7 @@ function Game () {
       {teamsList}
       </Teams>
 
-      Victory ? :
+      <Toggle name="Victory" value={isVictory} onChange={(val) => setVictory(val)}></Toggle>
       {hasMembers(teams) && <SaveButton onSave={handleSave}></SaveButton>}
       <HeroPicker heroes={heroesList} onHeroPick={handleHeroPick}></HeroPicker>
     </GameWrapper>
@@ -99,7 +101,7 @@ const GameWrapper = styled.div`
 
 
 function hasMembers(teams : T.Team[]) {
-  return teams[0].members.length && teams[1].members.length
+  return !!(teams[0].members.length && teams[1].members.length)
 }
 
 function addHeroToTeam(team : T.Team, hero : T.Hero) : T.Team {

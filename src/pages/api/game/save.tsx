@@ -47,6 +47,7 @@ async function save(game : T.Game) {
   await prisma.game.create({
     data : {
       type : 1,
+      isVictory : game.isVictory,
       createdBy : 12,
       heroes : {
         create : heroes
