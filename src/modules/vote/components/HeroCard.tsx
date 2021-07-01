@@ -4,9 +4,10 @@ import type * as T from '@/common/types/game'
 type HeroCardProps = {
   hero : T.Hero
   index : number
+  onClick : Function
 }
 
-function HeroCard ({hero, index} : HeroCardProps) {
+function HeroCard ({hero, index, onClick} : HeroCardProps) {
 
   const imgProps = {
     src : 'img/' + hero.name.replace(/ /g, '_') + '_Hero_Portrait.png',
@@ -15,7 +16,7 @@ function HeroCard ({hero, index} : HeroCardProps) {
   }
 
   return (
-    <Card index={index}>
+    <Card key={hero.id} index={index} onClick={onClick}>
       <ImgWrapper>
         <HeroImg {...imgProps} />
       </ImgWrapper>
@@ -75,7 +76,7 @@ const Card = styled.div`
 
   opacity:0;
   animation: pop-in .5s ease-out forwards;
-  ${(props) => 'animation-delay:'+props.index+'s;'}
+  ${(props) => 'animation-delay:0.'+props.index+'s;'}
 
   @keyframes pop-in{
     from {

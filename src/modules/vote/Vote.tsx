@@ -13,16 +13,24 @@ function Vote ({} : VoteProps) {
   const [elapsedTime, setElapsedTime] = useState(0)
 
   useEffect(() => {
+    generateRound()
+  }, [])
+
+  const generateRound = () => {
     const indexes = uniqueRandom(HEROES_LIST.length)
     const heroes = indexes.map(i => HEROES_LIST[i])
     setHeroes(heroes)
-  }, [])
+  }
+
+  const handleClick = () => {
+    generateRound()
+  }
 
   return (
     <div>
       Pick your favorite
       <HeroesList>
-        {heroes.map((h, i) => <HeroCard key={h.key} index={i} hero={h}></HeroCard>)}
+        {heroes.map((h, i) => <HeroCard key={h.key} index={i} hero={h} onClick={handleClick}></HeroCard>)}
       </HeroesList>
     </div>
   )
