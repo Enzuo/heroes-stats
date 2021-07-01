@@ -17,6 +17,7 @@ export interface Team {
   label: string
   color: string
   members: Array<Member>
+  isUserTeam?: boolean
 }
 
 export interface Game {

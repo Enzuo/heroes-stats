@@ -13,6 +13,7 @@ import { isTemplateSpan } from 'typescript'
 function Game () {
   const defaultTeams : T.Team[] = [{
     label : 'Your team',
+    isUserTeam : true,
     color : 'blue',
     members : []
   },{

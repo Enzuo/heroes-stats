@@ -32,6 +32,7 @@ function Team ({team, isSelected, onClick, onTeamChange} : TeamProps) {
     <TeamMember 
       key={i} 
       member={member} 
+      isUser={i===0 && team.isUserTeam}
       onRemove={() => handleMemberRemove(member)} 
       onStatusChange={(st) => handleMemberStatusChange(member, st)}
     />

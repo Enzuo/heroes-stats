@@ -7,11 +7,12 @@ import Hero from '@/common/components/Hero'
 
 type TeamMemberProps = {
   member : Member
+  isUser : boolean
   onRemove? : () => void
   onStatusChange? : (st : object) => void
 }
 
-function TeamMember({member, onRemove, onStatusChange} : TeamMemberProps) {
+function TeamMember({member, isUser, onRemove, onStatusChange} : TeamMemberProps) {
   const handleImpactClick = (value) => {
     onStatusChange({impact : value})
   }
@@ -21,7 +22,7 @@ function TeamMember({member, onRemove, onStatusChange} : TeamMemberProps) {
   }
 
   return (
-    <StyledTeamMember>
+    <StyledTeamMember isUser={isUser}>
       <Hero onRemove={onRemove} hero={member.hero}></Hero>
       <StyledButton selected={member.status.impact === 1} onClick={() => {handleImpactClick(1)}} icon={faThumbsUp} title="Good impact for his team" />
       <StyledButton color="#ff5858" selected={member.status.impact === -1} onClick={() => {handleImpactClick(-1)}} icon={faThumbsDown} title="Not really useful for his team" />
@@ -45,6 +46,10 @@ const StyledTeamMember = styled.div`
   display:flex;
   flex-direction:column;
   align-items:center;
+  padding:2px;
+  margin:2px;
+
+  ${(props) => props.isUser ? 'background: #fffdf833; box-shadow: 0 0 5px 0px #005da9;' : ''}
 `
 
 export default TeamMember
