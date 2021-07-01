@@ -86,6 +86,8 @@ function Game () {
 
 const Teams = styled.div`
   display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `
 
 const GameWrapper = styled.div`

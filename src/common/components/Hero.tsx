@@ -62,28 +62,14 @@ const CircleIcon = styled.div`
   }
 `
 
-
 const HeroImg = styled.img`
   height:64px;
   width:64px;
   transition: transform .2s;
 `
 
-const HeroWrapper = styled.div`
-  cursor: ${(props) => props.onClick ? 'pointer' : 'default'};
-  display: inline-block;
-  margin: 2px;
-
-  position:relative;
-
-  &:hover ${HeroImg} {
-    transform: scale(1.1) perspective(1px);
-  }
-`
-
-
-
 const HeroRemoveButton = styled(FontAwesomeIcon)`
+  display:none;
   position:absolute;
   right:1px;
   top:1px;
@@ -114,6 +100,23 @@ const HeroRemoveButton = styled(FontAwesomeIcon)`
   &:hover {
     animation-name: spin;
   }
+`
+
+const HeroWrapper = styled.div`
+  cursor: ${(props) => props.onClick ? 'pointer' : 'default'};
+  display: inline-block;
+  margin: 2px;
+
+  position:relative;
+
+  &:hover ${HeroImg} {
+    transform: scale(1.1) perspective(1px);
+  }
+
+  &:hover ${HeroRemoveButton} {
+    display:block;
+  }
+  
 `
 
 
