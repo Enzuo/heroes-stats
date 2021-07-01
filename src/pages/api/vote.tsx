@@ -15,11 +15,11 @@ export default async function handler(req, res) {
     case 'POST':
       try {
         await saveVote(body)
-        res.status(200)
+        res.status(200).end()
       }
       catch(e){
         console.error(e)
-        res.status(500)
+        res.status(500).end()
       }
       break
     default:
