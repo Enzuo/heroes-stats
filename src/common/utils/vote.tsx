@@ -7,55 +7,48 @@ import type * as T from '@/common/types/game'
 export function calculateRankFromVotes(votes : T.VoteRound[]) {
   const heroesLadder = votes.reduce((ladder, vote) => {
 
-    const BASE_SCORE = 500
+    const BASE_RATING = 1500
 
     const heroes = vote.heroes.map(h => { 
-      const ladderIndex = ladder.findIndex(l => l.id === h.id)
-      const heroScore = ladderIndex >= 0 ? ladder[ladderIndex].score : BASE_SCORE
-      return {
-        id : h.id, 
-        score : heroScore,
-        ladderIndex : ladderIndex,
-        isPicked : h.isPicked
+      var hero = ladder.find(l => l.id === h.id)
+      if(!hero) {
+        hero = {
+          id : h.id,
+          rating : BASE_RATING,
+          rounds : 0,
+        }
+        ladder.push(hero)
       }
+      hero.rounds += 1
+      return hero
     })
 
-    const roundScores = heroes.map(a => a.score)
-    const highestScore = Math.max(...roundScores)
-    const lowestScore = Math.min(...roundScores)
-    const roundAvg = roundScores.reduce((a, b) => a + b) / roundScores.length;
-    const roundWeight = roundAvg / BASE_SCORE
+    const winnerId = vote.heroes.reduce((id, h) => h.isPicked ? h.id : id, null)
+    const winner = heroes.find(h => h.id === winnerId)
+    const loosers = heroes.reduce((arr, h) => h.id !== winnerId ? arr.concat(h) : arr, [])
 
-    for(var i=0; i<heroes.length; i++){
-      var hero = heroes[i]
+    const ratingChangeForWinner = []
+    for(var i=0; i<loosers.length; i++){
+      const looser = loosers[i]
+      const ratingDiff = Math.abs(winner.rating - looser.rating)
+      // close to 0.5 if diff = 0, close to 1 if diff = 100
+      var expectedValue = 1 / (1 + Math.pow(10, ratingDiff/100)) 
+      // if winner rating was lower than inverse expectedValue
+      expectedValue = winner.rating > looser.rating ? expectedValue : 1 - expectedValue 
 
-      // New hero
-      if(hero.ladderIndex === -1){
-        if(hero.isPicked){
-          hero.score = highestScore + 50
-        }
-        else {
-          hero.score = hero.score - 50
-        }
+      
+      const ratingChange = Math.round(50 * expectedValue)
+      // console.log('match between', winner.id, winner.rating, ' & ', looser.id, looser.rating, ' : ', expectedValue, ratingDiff, ratingChange)
 
-        ladder.push({id : hero.id, score : hero.score})
-      }
-
-      // Hero have already been voted on
-      if(hero.ladderIndex >= 0){
-
-        if(hero.isPicked){
-          hero.score = highestScore +
-        }
-        else {
-          hero.score = lowestScore +
-        }
-
-        ladder[hero.ladderIndex] = {id : hero.id, score : hero.score}
-      }
+      ratingChangeForWinner.push(ratingChange)
+      looser.rating -= ratingChange
     }
+    for(var i=0; i<ratingChangeForWinner.length; i++){
+      winner.rating += ratingChangeForWinner[i]
+    }
+
     return ladder
   }, [])
 
-  return heroesLadder.sort((a, b) => b.score - a.score)
+  return heroesLadder.sort((a, b) => b.rating - a.rating)
 }

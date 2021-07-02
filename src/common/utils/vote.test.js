@@ -11,8 +11,9 @@ test('simple vote ladder', () => {
   ]
   const playerRank = [1, 2, 6]
 
-  const result = calculateRankFromVotes(votes).map(a => a.id)
-  expect(result).toContain(playerRank)
+  const result = calculateRankFromVotes(votes)
+  const resultMapped = result.map(a => a.id).toString()
+  expect(resultMapped).toContain(playerRank.toString())
 });
 
 test('5 picked over 2 (2 won a lot of rounds)', () => {
@@ -25,7 +26,9 @@ test('5 picked over 2 (2 won a lot of rounds)', () => {
   ]
   const playerRank = [1, 5, 2]
   
-  expect(calculateRankFromVotes(votes)).toContain(playerRank)
+  const result = calculateRankFromVotes(votes)
+  const resultMapped = result.map(a => a.id).toString()
+  expect(resultMapped).toContain(playerRank.toString())
 });
 
 test('getting on the very top of the vote ladder', () => {
@@ -33,15 +36,9 @@ test('getting on the very top of the vote ladder', () => {
     {heroes : [{id:1, isPicked: true },{id:2, isPicked: false},{id:3, isPicked: false}]},
     {heroes : [{id:4, isPicked: true },{id:1, isPicked: false},{id:2, isPicked: false}]}, // 4 picked over 1
   ]
+  const playerRank = [4, 1]
 
-  expect(calculateRankFromVotes(votes)).toStrictEqual([ 3, 2, 1, 4 ])
-});
-
-test('small number of votes for different ids', () => {
-  const votes = [
-    {heroes : [{id:1, isPicked: true },{id:2, isPicked: false},{id:3, isPicked: false}]},
-    {heroes : [{id:4, isPicked: true },{id:5, isPicked: false},{id:6, isPicked: false}]},
-  ]
-
-  expect(calculateRankFromVotes(votes)).toStrictEqual([ 3, 2, 1, 4 ])
+  const result = calculateRankFromVotes(votes)
+  const resultMapped = result.map(a => a.id).toString()
+  expect(resultMapped).toContain(playerRank.toString())
 });
