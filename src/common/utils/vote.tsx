@@ -6,34 +6,56 @@ import type * as T from '@/common/types/game'
 // Doesn't take into account your voting history
 export function calculateRankFromVotes(votes : T.VoteRound[]) {
   const heroesLadder = votes.reduce((ladder, vote) => {
-    const pickedHero = vote.heroes.reduce((arr, h) => h.isPicked ? arr : h.id, null)
 
-    const heroesWithPos = vote.heroes.map(h => { return {
-      id : h.id, 
-      index : ladder.findIndex(l => l === h.id), 
-      isPicked : h.isPicked
-    }}).sort((a,b) => (b.isPicked ? 1 : 0) - (a.isPicked ? 1 : 0)) // first one is the picked one
-    const allPos = heroesWithPos.map(a => a.index)
-    const highestPos = Math.max(...allPos)
+    const BASE_SCORE = 500
 
-    for(var i=0; i<heroesWithPos.length; i++){
-      var hero = heroesWithPos[i]
+    const heroes = vote.heroes.map(h => { 
+      const ladderIndex = ladder.findIndex(l => l.id === h.id)
+      const heroScore = ladderIndex >= 0 ? ladder[ladderIndex].score : BASE_SCORE
+      return {
+        id : h.id, 
+        score : heroScore,
+        ladderIndex : ladderIndex,
+        isPicked : h.isPicked
+      }
+    })
 
-      // hero has to be moved up
-      if(hero.isPicked && highestPos !== hero.index){
-        ladder.splice(highestPos+1, 0, hero.id)
-        if(hero.index >= 0){
-          ladder.splice(hero.index, 1)
+    const roundScores = heroes.map(a => a.score)
+    const highestScore = Math.max(...roundScores)
+    const lowestScore = Math.min(...roundScores)
+    const roundAvg = roundScores.reduce((a, b) => a + b) / roundScores.length;
+    const roundWeight = roundAvg / BASE_SCORE
+
+    for(var i=0; i<heroes.length; i++){
+      var hero = heroes[i]
+
+      // New hero
+      if(hero.ladderIndex === -1){
+        if(hero.isPicked){
+          hero.score = highestScore + 50
         }
+        else {
+          hero.score = hero.score - 50
+        }
+
+        ladder.push({id : hero.id, score : hero.score})
       }
 
-      // hero not yet in the lader
-      else if(hero.index < 0){
-        ladder.unshift(hero.id)
+      // Hero have already been voted on
+      if(hero.ladderIndex >= 0){
+
+        if(hero.isPicked){
+          hero.score = highestScore +
+        }
+        else {
+          hero.score = lowestScore +
+        }
+
+        ladder[hero.ladderIndex] = {id : hero.id, score : hero.score}
       }
     }
     return ladder
   }, [])
 
-  return heroesLadder
+  return heroesLadder.sort((a, b) => b.score - a.score)
 }
