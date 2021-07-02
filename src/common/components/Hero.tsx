@@ -5,23 +5,25 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 type HeroProps = {
   hero : {id : number, name : string},
+  options?: Object,
   onClick?: Function,
   onRemove?: Function,
 }
 
-function Hero ({hero, onClick, onRemove} : HeroProps) {
+function Hero ({hero, options, onClick, onRemove} : HeroProps) {
   const props = {
     src : 'img/' + hero.name.replace(/ /g, '_') + '_Hero_Portrait.png',
     alt : hero.name,
     title : hero.name,
+    options : options,
   }
   const handleClick = () => onClick ? onClick(hero) : null
 
   return (
     <HeroWrapper onClick={handleClick}>
-      <CircleIcon >
+      <ImgWrapper options={options}>
         <HeroImg {...props} />
-      </CircleIcon>
+      </ImgWrapper>
       {onRemove && <HeroRemoveButton onClick={onRemove} icon={faTimes} title="Remove"/>}
     </HeroWrapper>
   )
@@ -30,11 +32,10 @@ function Hero ({hero, onClick, onRemove} : HeroProps) {
 
 
 
-const CircleIcon = styled.div`
-  border-radius: 50%;
-  height: 64px;
-  width: 64px;
-
+const ImgWrapper = styled.div`
+  border-radius: ${(props) => props.options?.style === 'square' ? '20%' : '50%'};
+  height:64px;
+  width:64px;
 
   box-shadow: 0 0 6px 1px rgb(0 0 0 / 60%);
   border:2px solid rgba(51,153,255,.4);
@@ -51,8 +52,9 @@ const CircleIcon = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 50%;
+    border-radius: inherit;
     display:block;
+    pointer-events: none;
   }
   &:hover:after {
     background-color: rgba(0,128,255,.1);
@@ -103,6 +105,8 @@ const HeroRemoveButton = styled(FontAwesomeIcon)`
 `
 
 const HeroWrapper = styled.div`
+  height: 68px;
+  width: 68px;
   cursor: ${(props) => props.onClick ? 'pointer' : 'default'};
   display: inline-block;
   margin: 2px;

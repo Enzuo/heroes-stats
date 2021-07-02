@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import Hero from "@/common/components/Hero"
 import { api, getUserUid } from "@/common/utils"
 import { useEffect, useState } from "react"
@@ -23,10 +24,19 @@ function Dashboard ({} : DashboardProps) {
 
   return (
     <div>
-      {heroes.map(h => <Hero key={h.id} hero={h}></Hero>)}
-
+      <h1>Welcome</h1>
+      <HeroesLadder>
+        <h2>My heroes</h2>
+        {heroes.map(h => <Hero key={h.id} hero={h} options={{style:'square'}}></Hero>)}
+      </HeroesLadder>
     </div>
   )
 }
+
+const HeroesLadder = styled.div`
+  display:flex;
+  flex-direction:column;
+`
+
 
 export default Dashboard
