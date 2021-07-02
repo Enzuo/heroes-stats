@@ -15,8 +15,8 @@ function Dashboard ({} : DashboardProps) {
 
   useEffect(() => {
     const getHeroes = async () => {
-      var heroesList : number[] = await (await api.get('heroes/list', {userUid : getUserUid()})).json()
-      setHeroes(heroesList.map(id => HEROES_LIST.find(a => a.id === id)))
+      var heroesList : {id:number, rating:number}[] = await (await api.get('heroes/list', {userUid : getUserUid()})).json()
+      setHeroes(heroesList.map(h => HEROES_LIST.find(a => a.id === h.id)))
     } 
     getHeroes()
   }, [])
