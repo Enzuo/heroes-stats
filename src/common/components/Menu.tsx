@@ -27,25 +27,13 @@ function MenuLink ({href, icon, label}) {
 
   return (
     <Link href={href} passHref>
-      <MenuHyperLink>
+      <MenuHyperLink active={router.pathname == href}>
         <FontAwesomeIcon icon={icon}></FontAwesomeIcon>
         <span>{label}</span>
-        <ActiveDot active={router.pathname == href}></ActiveDot>
       </MenuHyperLink>
     </Link>
   )
 }
-
-const ActiveDot = styled.div`
-  position:absolute;
-  bottom:-5px;
-  width:4px;
-  height:4px;
-  background:#5a72d0b0;
-  left:45%;
-  border-radius:2px;
-  display:${props => props.active ? 'block' : 'none'};
-`
 
 const MenuHyperLink = styled.a`
   position: relative;
@@ -56,7 +44,7 @@ const MenuHyperLink = styled.a`
   padding:10px;
   font-size: 125%;
 
-  /* ${props => props.active ? 'border-bottom:2px solid #5a72d0b0' : ''}; */
+  ${props => props.active ? 'border-top:3px solid #33a4f6' : ''};
 
 
   &:hover {
