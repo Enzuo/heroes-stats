@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import type * as T from '@/common/types/game'
-import { calculateRankFromVotes } from '@/common/utils/vote'
+import { calculateRankFromVotes } from '@/common/blogic/vote'
 
 const prisma = new PrismaClient()
 
