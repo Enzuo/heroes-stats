@@ -3,7 +3,7 @@ import type * as T from '@/common/types/game'
 
 type HeroAvatarProps = {
   name : string
-  size : number
+  size? : number
 }
 
 function HeroAvatar ({name, size} : HeroAvatarProps) {

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import HeroAvatar from './HeroAvatar'
 
 
 type HeroProps = {
@@ -11,18 +12,12 @@ type HeroProps = {
 }
 
 function Hero ({hero, options, onClick, onRemove} : HeroProps) {
-  const props = {
-    src : 'img/' + hero.name.replace(/ /g, '_') + '_Hero_Portrait.png',
-    alt : hero.name,
-    title : hero.name,
-    options : options,
-  }
   const handleClick = () => onClick ? onClick(hero) : null
 
   return (
     <HeroWrapper onClick={handleClick}>
       <ImgWrapper options={options}>
-        <HeroImg {...props} />
+        <HeroAvatar name={hero.name} />
       </ImgWrapper>
       {onRemove && <HeroRemoveButton onClick={onRemove} icon={faTimes} title="Remove"/>}
     </HeroWrapper>
@@ -62,12 +57,6 @@ const ImgWrapper = styled.div`
       0deg
       ,rgba(71,153,235,.6) 0,rgba(71,153,235,0) 40%);
   }
-`
-
-const HeroImg = styled.img`
-  height:64px;
-  width:64px;
-  transition: transform .2s;
 `
 
 const HeroRemoveButton = styled(FontAwesomeIcon)`
@@ -113,7 +102,7 @@ const HeroWrapper = styled.div`
 
   position:relative;
 
-  &:hover ${HeroImg} {
+  &:hover img {
     transition: transform .2s;
     transform: scale(1.1) perspective(1px);
   }

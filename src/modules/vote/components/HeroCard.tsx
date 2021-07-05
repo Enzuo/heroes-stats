@@ -63,6 +63,10 @@ const Card = styled.div`
   width:125px;
   cursor:pointer;
 
+  &:hover {
+    z-index:10;
+  }
+
   &:hover img {
     transition: transform .2s;
     transform:scale(1.1);

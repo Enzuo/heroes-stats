@@ -11,21 +11,30 @@ type VoteRoundProps = {
 function VoteRound ({heroes, onVote} : VoteRoundProps) {
 
   return (
-    <div>
-      Pick your favorite hero ❤️
+    <RoundWrapper>
+      <Legend>Pick your favorite hero ❤</Legend>
       <HeroesList>
         {heroes.map((h, i) => <HeroCard key={h.id} index={i} hero={h} onClick={() => onVote(h)}></HeroCard>)}
       </HeroesList>
-    </div>
+    </RoundWrapper>
   )
 }
 
 // Layout
+const RoundWrapper = styled.div`
+  display:flex;
+  flex-direction:column;
+`
+
+const Legend = styled.span`
+  text-align:center
+`
+
 const HeroesList = styled.div`
   display:flex;
   flex-direction:row;
   justify-content: space-evenly;
-  margin:50px;
+  margin:50px 0;
 `
 
 
