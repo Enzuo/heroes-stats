@@ -12,23 +12,24 @@ type VoteProps = {
 function Vote ({} : VoteProps) {
 
   const [heroes, setHeroes] = useState([])
-  const [elapsedTime, setElapsedTime] = useState(0)
-
+  const [roundStartDate, setRoundStartDate] = useState(Date.now())
+  
   useEffect(() => {
     generateRound()
   }, [])
-
+  
   const generateRound = () => {
     const indexes = uniqueRandom(HEROES_LIST.length)
     const heroes = indexes.map(i => HEROES_LIST[i])
     setHeroes(heroes)
+    setRoundStartDate(Date.now())
   }
 
   const handleClick = (index) => {
     // save
     const voteRound : T.VoteRound = {
       userUid: getUserUid(),
-      elapsedTime: 0,
+      elapsedTime: Date.now() - roundStartDate,
       heroes : heroes.map((h,i) => { return { 
         id : h.id, 
         isPicked: index === i 
