@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import HeroAvatar from '@/common/components/HeroAvatar'
 import type * as T from '@/common/types/game'
 
 type HeroCardProps = {
@@ -9,16 +10,12 @@ type HeroCardProps = {
 
 function HeroCard ({hero, index, onClick} : HeroCardProps) {
 
-  const imgProps = {
-    src : 'img/' + hero.name.replace(/ /g, '_') + '_Hero_Portrait.png',
-    alt : hero.name,
-    title : hero.name,
-  }
+  console.log(hero)
 
   return (
     <Card key={hero.id} index={index} onClick={onClick}>
       <ImgWrapper>
-        <HeroImg {...imgProps} />
+        <HeroAvatar name={hero.name} size={125} />
       </ImgWrapper>
       <AnimatedCrownWrapper>
         <object type="image/svg+xml" data="svg/stars.svg"></object>
@@ -66,7 +63,8 @@ const Card = styled.div`
   width:125px;
   cursor:pointer;
 
-  &:hover ${HeroImg} {
+  &:hover img {
+    transition: transform .2s;
     transform:scale(1.1);
   }
 

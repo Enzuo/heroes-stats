@@ -114,6 +114,7 @@ const HeroWrapper = styled.div`
   position:relative;
 
   &:hover ${HeroImg} {
+    transition: transform .2s;
     transform: scale(1.1) perspective(1px);
   }
 

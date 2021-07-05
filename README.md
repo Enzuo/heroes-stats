@@ -17,6 +17,10 @@ npx prisma migrate dev --name init
 
 ## Contribute
 
+Architecture :
+- [module structure](https://dev.to/vadorequest/a-2021-guide-about-structuring-your-next-js-project-in-a-flexible-and-efficient-way-472)
+
 Naming conventions
 - imported types in the namespace T.
 - imported styles in the namespace S.
+

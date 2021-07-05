@@ -2,8 +2,9 @@ import {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import { api, getUserUid } from '@/common/utils'
 import HEROES_LIST from '@/common/heroes.json'
-import HeroCard from '@/modules/vote/components/HeroCard'
 import type * as T from '@/common/types/game'
+import {uniqueRandom} from '@/common/utils'
+import VoteRound from '@/modules/vote/components/VoteRound'
 
 type VoteProps = {
   
@@ -25,14 +26,14 @@ function Vote ({} : VoteProps) {
     setRoundStartDate(Date.now())
   }
 
-  const handleClick = (index) => {
+  const handleVote = (hero : T.Hero) => {
     // save
     const voteRound : T.VoteRound = {
       userUid: getUserUid(),
       elapsedTime: Date.now() - roundStartDate,
       heroes : heroes.map((h,i) => { return { 
         id : h.id, 
-        isPicked: index === i 
+        isPicked: h.id === hero.id
       }})
     }
 
@@ -42,32 +43,9 @@ function Vote ({} : VoteProps) {
   }
 
   return (
-    <div>
-      Pick your favorite
-      <HeroesList>
-        {heroes.map((h, i) => <HeroCard key={h.key} index={i} hero={h} onClick={() => handleClick(i)}></HeroCard>)}
-      </HeroesList>
-    </div>
+    <VoteRound heroes={heroes} onVote={handleVote}></VoteRound>
   )
 }
 
-const HeroesList = styled.div`
-  display:flex;
-  flex-direction:row;
-  justify-content: space-evenly;
-  margin:50px;
-`
-
-function uniqueRandom(length){
-  var nb=3
-  var res=[]
-  while(res.length < nb){
-    var randomNumber = Math.floor(Math.random()*length);
-    if(res.indexOf(randomNumber) === -1){
-      res.push(randomNumber)
-    }
-  }
-  return res
-}
 
 export default Vote

@@ -5,6 +5,18 @@ export function clone(obj){
   return JSON.parse(JSON.stringify(obj))
 }
 
+export function uniqueRandom(length){
+  var nb=3
+  var res=[]
+  while(res.length < nb){
+    var randomNumber = Math.floor(Math.random()*length);
+    if(res.indexOf(randomNumber) === -1){
+      res.push(randomNumber)
+    }
+  }
+  return res
+}
+
 export function getUserUid() {
   var userId = window.localStorage.getItem('userId')
   if(!userId){
