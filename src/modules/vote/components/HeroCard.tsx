@@ -70,6 +70,7 @@ const Card = styled.div`
   &:hover img {
     transition: transform .2s;
     transform:scale(1.1);
+    box-shadow: 0px 0px 5px #000;
   }
 
   &:hover ${AnimatedCrownWrapper} {

@@ -13,26 +13,28 @@ function Menu ({} : MenuProps) {
   return (
     <MenuWrapper>
       <Link href="/dashboard">
-        <a><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></a>
+        <a><FontAwesomeIcon icon={faUser}></FontAwesomeIcon><span>User profile</span></a>
       </Link>
       <Link href="/dashboard">
-        <a><FontAwesomeIcon icon={faChartBar}></FontAwesomeIcon></a>
+        <a><FontAwesomeIcon icon={faChartBar}></FontAwesomeIcon><span>Global stats</span></a>
       </Link>
       <Link href="/vote">
-        <a><FontAwesomeIcon icon={faDice}></FontAwesomeIcon></a>
+        <a><FontAwesomeIcon icon={faDice}></FontAwesomeIcon><span>Hero tinder</span></a>
       </Link>
       <Link href="/game">
-        <a><FontAwesomeIcon icon={faChessKnight}></FontAwesomeIcon></a>
+        <a><FontAwesomeIcon icon={faChessKnight}></FontAwesomeIcon><span>Game history</span></a>
       </Link>
     </MenuWrapper>
   )
 }
 
 const MenuWrapper = styled.div`
-  text-align:right;
+  display: flex;
+  justify-content: flex-end;
 
   a {
-    display:inline-block;
+    display:flex;
+    align-items:center;
     text-decoration:none;
     color: #5a72d0b0;
     padding:10px;
@@ -42,6 +44,20 @@ const MenuWrapper = styled.div`
   a:hover {
     color:#33a4f6;
     background:#33a4f620;
+  }
+
+  a:hover > span {
+    width:auto;
+    padding:0 10px;
+  }
+
+  a > span {
+    font-size:10px;
+    text-transform:uppercase;
+    width:0px;
+    padding:0;
+    overflow:hidden;
+    transition:all 0.3s;
   }
 `
 
