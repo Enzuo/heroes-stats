@@ -1,4 +1,5 @@
 import * as db from '@/common/utils/database'
+import {checkUserUid} from '@/common/utils'
 import type * as T from '@/common/types/game'
 
 export default async function handler(req, res) {
@@ -7,11 +8,10 @@ export default async function handler(req, res) {
     body,
   } = req
 
-  console.log('got vote', body)
-
   switch (method) {
     case 'POST':
       try {
+        checkUserUid(body.userUid)
         await db.saveVote(body)
         res.status(200).end()
       }

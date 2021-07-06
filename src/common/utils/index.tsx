@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4, validate as uuidValidate } from 'uuid'
 
 
 export function clone(obj){
@@ -17,12 +17,23 @@ export function uniqueRandom(length, nb = 3){
 }
 
 export function getUserUid() {
+  // if access to local storage is denied it'll throw an error here
   var userId = window.localStorage.getItem('userId')
   if(!userId){
     userId = uuidv4()
     window.localStorage.setItem('userId', userId)
   }
   return userId
+}
+
+export function isUserUidValid(uid : string) : boolean {
+  return uuidValidate(uid)
+}
+
+export function checkUserUid(uid : string) {
+  if(!isUserUidValid(uid)){
+    throw('Invalid user id')
+  }
 }
 
 export const api = {

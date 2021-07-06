@@ -1,10 +1,11 @@
 import {useEffect, useState} from 'react'
-import styled from 'styled-components'
+import {notify} from 'react-notify-toast'
 import { api, getUserUid } from '@/common/utils'
 import HEROES_LIST from '@/common/heroes.json'
 import type * as T from '@/common/types/game'
 import {uniqueRandom} from '@/common/utils'
 import VoteRound from '@/modules/vote/components/VoteRound'
+
 
 type VoteProps = {
   
@@ -26,7 +27,7 @@ function Vote ({} : VoteProps) {
     setRoundStartDate(Date.now())
   }
 
-  const handleVote = (hero : T.Hero) => {
+  const handleVote = async (hero : T.Hero) => {
     // save
     const voteRound : T.VoteRound = {
       userUid: getUserUid(),
@@ -37,7 +38,10 @@ function Vote ({} : VoteProps) {
       }})
     }
 
-    api.post('vote/', voteRound)
+    const result = await api.post('vote/', voteRound)
+    if(result.status !== 200){
+      return notify.show('Server error', 'error', 2000)
+    }
 
     generateRound()
   }
