@@ -5,8 +5,7 @@ export function clone(obj){
   return JSON.parse(JSON.stringify(obj))
 }
 
-export function uniqueRandom(length){
-  var nb=3
+export function uniqueRandom(length, nb = 3){
   var res=[]
   while(res.length < nb){
     var randomNumber = Math.floor(Math.random()*length);

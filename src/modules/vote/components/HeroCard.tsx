@@ -10,10 +10,8 @@ type HeroCardProps = {
 
 function HeroCard ({hero, index, onClick} : HeroCardProps) {
 
-  console.log(hero)
-
   return (
-    <Card key={hero.id} index={index} onClick={onClick}>
+    <Card index={index} onClick={onClick}>
       <ImgWrapper className="hello">
         <HeroAvatar name={hero.name} size={125} />
       </ImgWrapper>

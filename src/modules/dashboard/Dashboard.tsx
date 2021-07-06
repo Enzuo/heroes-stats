@@ -22,8 +22,10 @@ function Dashboard({ }: DashboardProps) {
     getHeroes()
   }, [])
 
-  const topHeroes = heroes.slice(0, 15)
-  const worstHeroes = heroes.slice(heroes.length - 10, heroes.length)
+  const TOP_COUNT = 15
+  const WORST_COUNT = 10
+  const topHeroes = heroes.slice(0, TOP_COUNT)
+  const worstHeroes = heroes.slice(Math.max(heroes.length - WORST_COUNT, TOP_COUNT), heroes.length)
 
   return (
     <DashboardWrapper>

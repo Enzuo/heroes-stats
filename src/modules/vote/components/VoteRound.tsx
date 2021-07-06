@@ -14,7 +14,7 @@ function VoteRound ({heroes, onVote} : VoteRoundProps) {
     <RoundWrapper>
       <Legend>Pick your favorite hero ❤</Legend>
       <HeroesList>
-        {heroes.map((h, i) => <HeroCard key={h.id} index={i} hero={h} onClick={() => onVote(h)}></HeroCard>)}
+        {heroes.map((h, i) => <HeroCard key={h.id + '' + i} index={i} hero={h} onClick={() => onVote(h)}></HeroCard>)}
       </HeroesList>
     </RoundWrapper>
   )
