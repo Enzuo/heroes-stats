@@ -12,7 +12,8 @@ resizeAllImages(){
   for img in $list; do
   name=$(magick public/img/$img -format "%t" info:)
   suffix=$(magick public/img/$img -format "%e" info:)
-  magick public/img/$img -resize ${size}x${size} "public/tmp/${name}_${size}.${suffix}"
+  magick public/img/$img -resize ${size}x${size} -define convolve:scale='20,100%' \
+    -morphology Convolve 'Log:0x2' "public/tmp/${name}_${size}.${suffix}"
   done
 }
 
@@ -31,6 +32,6 @@ magick public/sprite/heroes64.png -quality 92 public/sprite/heroes64.jpg
 
 
 
-
+rm public/sprite/*.png
 rm public/tmp/*
 rm -r public/tmp/
