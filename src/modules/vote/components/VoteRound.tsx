@@ -24,6 +24,9 @@ function VoteRound ({heroes, onVote} : VoteRoundProps) {
 const RoundWrapper = styled.div`
   display:flex;
   flex-direction:column;
+  flex-grow:1;
+  justify-content: center;
+  overflow:hidden;
 `
 
 const Legend = styled.span`
