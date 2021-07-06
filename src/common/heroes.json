@@ -88,4 +88,6 @@
  ,{ "id": 86, "name": "Anduin"                , "type": "Healer"           , "universe": "Warcraft"          }
  ,{ "id": 87, "name": "Qhira"                 , "type": "Melee Assassin"   , "universe": "Heroes"            }
  ,{ "id": 88, "name": "Deathwing"             , "type": "Bruiser"          , "universe": "Warcraft"          }
+ ,{ "id": 89, "name": "Mei"                   , "type": "Tank"             , "universe": "Overwatch"         }
+ ,{ "id": 90, "name": "Hogger"                , "type": "Bruiser"          , "universe": "Warcraft"          }
 ]
