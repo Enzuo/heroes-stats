@@ -1,5 +1,5 @@
-import * as db from 'src/common/utils/database'
-import { calculateRankFromVotes } from 'src/common/blogic/vote'
+import * as db from '@/common/utils/database'
+import { calculateRankFromVotes } from '@/common/blogic/vote'
 
 
 export default async function handler(req, res) {

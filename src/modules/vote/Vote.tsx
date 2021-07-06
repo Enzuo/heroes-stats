@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react'
 import {notify} from 'react-notify-toast'
-import { api, getUserUid } from 'src/common/utils'
-import HEROES_LIST from 'src/common/heroes.json'
-import type * as T from 'src/common/types/game'
-import {uniqueRandom} from 'src/common/utils'
-import VoteRound from 'src/modules/vote/components/VoteRound'
+import { api, getUserUid } from '@/common/utils'
+import HEROES_LIST from '@/common/heroes.json'
+import type * as T from '@/common/types/game'
+import {uniqueRandom} from '@/common/utils'
+import VoteRound from '@/modules/vote/components/VoteRound'
 
 
 type VoteProps = {

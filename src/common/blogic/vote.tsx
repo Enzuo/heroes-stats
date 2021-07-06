@@ -1,4 +1,4 @@
-import type * as T from 'src/common/types/game'
+import type * as T from '@/common/types/game'
 
 // This calculation method gives a lot of importance to the last votes, 
 // You can never have voted for one hero but the last vote you picked him over your number 1 

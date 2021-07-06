@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import Hero from "src/common/components/Hero"
-import { api, getUserUid } from "src/common/utils"
+import Hero from "@/common/components/Hero"
+import { api, getUserUid } from "@/common/utils"
 import { useEffect, useState } from "react"
-import HEROES_LIST from 'src/common/heroes.json'
-import type * as T from 'src/common/types/game'
+import HEROES_LIST from '@/common/heroes.json'
+import type * as T from '@/common/types/game'
 
 type DashboardProps = {
 

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import type * as T from 'src/common/types/game'
-import TeamMember from 'src/common/components/TeamMember'
+import type * as T from '@/common/types/game'
+import TeamMember from '@/common/components/TeamMember'
 
 type TeamProps = {
   team : T.Team

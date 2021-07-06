@@ -1,12 +1,12 @@
 import {useState} from 'react'
 import styled from 'styled-components'
-import Team from 'src/modules/game/components/Team'
-import SaveButton from 'src/modules/game/components/SaveButton'
-import { getUserUid } from 'src/common/utils'
-import HEROES_LIST from 'src/common/heroes.json'
-import HeroPicker from 'src/common/components/HeroPicker'
-import Toggle from 'src/common/components/Toggle'
-import type * as T from 'src/common/types/game'
+import Team from '@/modules/game/components/Team'
+import SaveButton from '@/modules/game/components/SaveButton'
+import { getUserUid } from '@/common/utils'
+import HEROES_LIST from '@/common/heroes.json'
+import HeroPicker from '@/common/components/HeroPicker'
+import Toggle from '@/common/components/Toggle'
+import type * as T from '@/common/types/game'
 
 
 

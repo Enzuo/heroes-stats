@@ -1,5 +1,5 @@
 
-import VoteModule from 'src/modules/vote/Vote'
+import VoteModule from '@/modules/vote/Vote'
 
 function vote () {
   return (

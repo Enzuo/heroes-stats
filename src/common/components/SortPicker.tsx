@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import styled from 'styled-components'
-import { HERO_SORT } from 'src/common/constants'
+import { HERO_SORT } from '@/common/constants'
 
 const sortChoices = Object.values(HERO_SORT)
 

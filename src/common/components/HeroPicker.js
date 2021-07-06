@@ -1,7 +1,7 @@
 import {useState} from 'react'
-import SortPicker from 'src/common/components/SortPicker'
-import HeroesList from 'src/common/components/HeroesList'
-import { useFormInput } from 'src/common/hooks/basicHooks'
+import SortPicker from '@/common/components/SortPicker'
+import HeroesList from '@/common/components/HeroesList'
+import { useFormInput } from '@/common/hooks/basicHooks'
 
 
 function HeroPicker ({ heroes, onHeroPick }) {
