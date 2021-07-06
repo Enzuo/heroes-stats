@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import * as db from '@/common/utils/database'
 import type * as T from '@/common/types/game'
-
-const prisma = new PrismaClient()
 
 export default async function handler(req, res) {
   const {
@@ -14,7 +12,7 @@ export default async function handler(req, res) {
   switch (method) {
     case 'POST':
       try {
-        await saveVote(body)
+        await db.saveVote(body)
         res.status(200).end()
       }
       catch(e){
@@ -29,25 +27,4 @@ export default async function handler(req, res) {
 }
 
 
-async function saveVote({elapsedTime, userUid, heroes} : T.VoteRound){
-  await prisma.voteRound.create({
-    data : { 
-      elapsedTime,
 
-      user : {
-        connectOrCreate: {
-          create: {
-            uuid: userUid,
-          },
-          where: {
-            uuid: userUid,
-          },
-        },
-      },
-
-      heroes : {
-        create : heroes
-      }
-    }
-  })
-}

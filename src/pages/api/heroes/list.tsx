@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client'
-import type * as T from '@/common/types/game'
+import * as db from '@/common/utils/database'
 import { calculateRankFromVotes } from '@/common/blogic/vote'
 
-const prisma = new PrismaClient()
 
 export default async function handler(req, res) {
   const {
@@ -14,7 +12,7 @@ export default async function handler(req, res) {
   switch(method){
     case 'GET':
       try {
-        const votes = await getHeroesVoteForUser(userUid);
+        const votes = await db.getHeroesVoteForUser(userUid);
         const heroes = calculateRankFromVotes(votes)
         res.status(200).json(heroes)
       }
@@ -28,21 +26,3 @@ export default async function handler(req, res) {
       res.status(405).end(`Method ${method} Not Allowed`)
   }
 }
-
-
-async function getHeroesVoteForUser (uuid) {
-  const result = await prisma.voteRound.findMany({
-    where : {
-      user : {
-        uuid : {
-          equals : uuid || ''
-        }
-      }
-    },
-    include: {
-      heroes: true,
-    },
-  })
-  return result
-}
-      

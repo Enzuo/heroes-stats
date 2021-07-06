@@ -1,7 +1,4 @@
-import { PrismaClient } from '@prisma/client'
-import type * as T from '@/common/types/game'
-
-const prisma = new PrismaClient()
+import * as db from '@/common/utils/database'
 
 export default async function handler(req, res) {
   const {
@@ -13,7 +10,7 @@ export default async function handler(req, res) {
   switch(method){
     case 'GET':
       try {
-        const result = await list(userUid);
+        const result = await db.listGames(userUid);
         res.status(200).json(result)
       }
       catch(e){
@@ -25,21 +22,4 @@ export default async function handler(req, res) {
       res.setHeader('Allow', ['GET'])
       res.status(405).end(`Method ${method} Not Allowed`)
   }
-}
-
-async function list (uuid) {
-  const result = await prisma.game.findMany({
-    where : {
-      user : {
-        uuid : {
-          equals : uuid || ''
-        }
-      }
-    },
-    include: {
-      user: true,
-      heroes: true,
-    },
-  })
-  return result
 }
