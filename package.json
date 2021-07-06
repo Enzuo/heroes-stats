@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "buildimg": "./spriteSheet.sh",
     "test": "jest",
     "vercel-build": "prisma generate && prisma migrate deploy && next build",
     "prisma:generate": "prisma generate"
@@ -34,6 +35,7 @@
     "eslint": "^7.29.0",
     "eslint-config-next": "^11.0.0",
     "jest": "^27.0.6",
+    "node-sprite-generator": "^0.10.2",
     "prisma": "^2.25.0",
     "typescript": "^4.3.4"
   }

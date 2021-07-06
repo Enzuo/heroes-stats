@@ -1,5 +1,7 @@
-import '../css/reset.css'
-import '../css/styles.css'
+import '@/css/reset.css'
+import '@/css/styles.css'
+import '@/css/heroes64.css'
+import '@/css/heroes125.css'
 import Menu from '@/common/components/Menu'
 import Notifications from 'react-notify-toast'
 

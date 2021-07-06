@@ -16,9 +16,12 @@ function HeroAvatar ({name, size} : HeroAvatarProps) {
     width: size ? size : 64,
     height: size ? size : 64,
   }
+  size = size ? size : 64
+  name = name.replace(/ /g, '_').replace(/'|\./g, '')
+  name += '_' + size
 
   return (
-    <Image {...imgProps}/>
+    <div className={name} />
   )
 }
 
