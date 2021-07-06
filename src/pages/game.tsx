@@ -1,8 +1,8 @@
-// import GameModule from '@/modules/game/Game'
+import GameModule from '@/modules/game/GameModule'
 
 function Game () { 
   return (
-    <></>
+    <GameModule></GameModule>
   )
 }
 
