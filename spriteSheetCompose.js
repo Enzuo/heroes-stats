@@ -27,6 +27,7 @@ function formatCssFile (file) {
   var cssFileContent = fs.readFileSync(file, 'utf-8')
   var cssFileUpdated = cssFileContent.replace(/_Hero_Portrait/g, '')
   cssFileUpdated = cssFileUpdated.replace(/(..\/..\/)/g, '')
+  cssFileUpdated = cssFileUpdated.replace(/png/g, 'jpg')
   fs.writeFileSync(file, cssFileUpdated)
 }
 
