@@ -10,7 +10,7 @@ type HeroAvatarProps = {
 function HeroAvatar ({name, size} : HeroAvatarProps) {
 
   const imgProps = {
-    src : '/img/' + name.replace(/ /g, '_') + '_Hero_Portrait.png',
+    src : '/img/' + name.replace(/ /g, '_').replace(/'|\./g, '') + '_Hero_Portrait.png',
     alt : name,
     title : name,
     width: size ? size : 64,
