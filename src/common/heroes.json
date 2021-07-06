@@ -62,7 +62,7 @@
  ,{ "id": 60, "name": "Ragnaros"              , "type": "Bruiser"          , "universe": "Warcraft"          }
  ,{ "id": 61, "name": "Zul'jin"               , "type": "Ranged Assassin"  , "universe": "Warcraft"          }
  ,{ "id": 62, "name": "Valeera"               , "type": "Melee Assassin"   , "universe": "Warcraft"          }
- ,{ "id": 63, "name": "Lúcio"                 , "type": "Healer"           , "universe": "Overwatch"         }
+ ,{ "id": 63, "name": "Lucio"                 , "type": "Healer"           , "universe": "Overwatch"         }
  ,{ "id": 64, "name": "Probius"               , "type": "Ranged Assassin"  , "universe": "StarCraft"         }
  ,{ "id": 65, "name": "Cassia"                , "type": "Ranged Assassin"  , "universe": "Diablo"            }
  ,{ "id": 66, "name": "Genji"                 , "type": "Ranged Assassin"  , "universe": "Overwatch"         }

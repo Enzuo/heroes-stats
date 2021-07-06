@@ -50,7 +50,7 @@ CREATE TABLE "HeroVote" (
     "voteId" INTEGER NOT NULL,
     "isPicked" BOOLEAN NOT NULL,
 
-    PRIMARY KEY ("voteId","heroId")
+    PRIMARY KEY ("heroId","voteId")
 );
 
 -- CreateIndex

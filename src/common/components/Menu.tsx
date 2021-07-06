@@ -15,9 +15,9 @@ function Menu ({} : MenuProps) {
   return (
     <MenuWrapper>
       <MenuLink href="/dashboard" icon={faUser} label="User profile"></MenuLink>
-      <MenuLink href="/dashboard" icon={faChartBar} label="Global stats"></MenuLink>
+      {/* <MenuLink href="/dashboard" icon={faChartBar} label="Global stats"></MenuLink> */}
       <MenuLink href="/vote" icon={faDice} label="Hero tinder"></MenuLink>
-      <MenuLink href="/game" icon={faChessKnight} label="Game history"></MenuLink>
+      {/* <MenuLink href="/game" icon={faChessKnight} label="Game history"></MenuLink> */}
     </MenuWrapper>
   )
 }
