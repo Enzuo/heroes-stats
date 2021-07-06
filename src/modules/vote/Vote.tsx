@@ -27,7 +27,7 @@ function Vote ({} : VoteProps) {
     setRoundStartDate(Date.now())
   }
 
-  const handleVote = async (hero : T.Hero) => {
+  const handleVote = (hero : T.Hero) => {
     // save
     const voteRound : T.VoteRound = {
       userUid: getUserUid(),
@@ -38,12 +38,15 @@ function Vote ({} : VoteProps) {
       }})
     }
 
+    save(voteRound)
+    generateRound()
+  }
+
+  const save = async (voteRound) => {
     const result = await api.post('vote/', voteRound)
     if(result.status !== 200){
       return notify.show('Server error', 'error', 2000)
     }
-
-    generateRound()
   }
 
   return (
