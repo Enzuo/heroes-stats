@@ -1,6 +1,6 @@
-import * as db from '@/common/utils/database'
-import {checkUserUid} from '@/common/utils'
-import type * as T from '@/common/types/game'
+import * as db from 'src/common/utils/database'
+import {checkUserUid} from 'src/common/utils'
+import type * as T from 'src/common/types/game'
 
 export default async function handler(req, res) {
   const {

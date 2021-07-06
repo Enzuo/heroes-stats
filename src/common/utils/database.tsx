@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import type * as T from '@/common/types/game'
+import type * as T from 'src/common/types/game'
 
 const prisma = new PrismaClient()
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Image from 'next/image'
-import type * as T from '@/common/types/game'
+import type * as T from 'src/common/types/game'
 
 type HeroAvatarProps = {
   name : string

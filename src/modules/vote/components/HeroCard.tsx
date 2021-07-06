@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import HeroAvatar from '@/common/components/HeroAvatar'
-import type * as T from '@/common/types/game'
+import HeroAvatar from 'src/common/components/HeroAvatar'
+import type * as T from 'src/common/types/game'
 
 type HeroCardProps = {
   hero : T.Hero

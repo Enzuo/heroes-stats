@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faThumbsDown, faTimesCircle, faLink } from '@fortawesome/free-solid-svg-icons'
-import type {Member} from '@/common/types/game'
-import Hero from '@/common/components/Hero'
+import type {Member} from 'src/common/types/game'
+import Hero from 'src/common/components/Hero'
 
 
 type TeamMemberProps = {

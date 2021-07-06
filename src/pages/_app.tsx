@@ -1,6 +1,6 @@
 import '../css/reset.css'
 import '../css/styles.css'
-import Menu from '@/common/components/Menu'
+import Menu from 'src/common/components/Menu'
 import Notifications from 'react-notify-toast'
 
 

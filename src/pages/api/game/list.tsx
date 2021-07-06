@@ -1,4 +1,4 @@
-import * as db from '@/common/utils/database'
+import * as db from 'src/common/utils/database'
 
 export default async function handler(req, res) {
   const {

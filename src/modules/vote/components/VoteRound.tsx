@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import HeroCard from '@/modules/vote/components/HeroCard'
-import type * as T from '@/common/types/game'
+import HeroCard from 'src/modules/vote/components/HeroCard'
+import type * as T from 'src/common/types/game'
 
 
 type VoteRoundProps = {

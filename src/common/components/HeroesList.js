@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import Hero from '@/common/components/Hero'
-import {clone} from '@/common/utils'
+import Hero from 'src/common/components/Hero'
+import {clone} from 'src/common/utils'
 import { HERO_SORT } from '../constants'
 
 function HeroesList ({heroes, sortBy, onHeroClick}) {
