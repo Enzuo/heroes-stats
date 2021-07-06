@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Image from 'next/image'
 import type * as T from '@/common/types/game'
 
 type HeroAvatarProps = {
@@ -9,14 +10,15 @@ type HeroAvatarProps = {
 function HeroAvatar ({name, size} : HeroAvatarProps) {
 
   const imgProps = {
-    src : 'img/' + name.replace(/ /g, '_') + '_Hero_Portrait.png',
+    src : '/img/' + name.replace(/ /g, '_') + '_Hero_Portrait.png',
     alt : name,
     title : name,
-    size,
+    width: size ? size : 64,
+    height: size ? size : 64,
   }
 
   return (
-    <Img {...imgProps}/>
+    <Image {...imgProps}/>
   )
 }
 

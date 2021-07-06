@@ -14,7 +14,7 @@ function HeroCard ({hero, index, onClick} : HeroCardProps) {
 
   return (
     <Card key={hero.id} index={index} onClick={onClick}>
-      <ImgWrapper>
+      <ImgWrapper className="hello">
         <HeroAvatar name={hero.name} size={125} />
       </ImgWrapper>
       <AnimatedCrownWrapper>
@@ -26,12 +26,6 @@ function HeroCard ({hero, index, onClick} : HeroCardProps) {
     </Card>
   )
 }
-
-const HeroImg = styled.img`
-  height:125px;
-  width:125px;
-  transition: transform .2s;
-`
 
 const AnimatedCrownWrapper = styled.div`
   display:none;
@@ -47,6 +41,11 @@ const AnimatedCrownWrapper = styled.div`
 
 const HeroName = styled.div`
 margin:20px 10px;
+`
+
+const ImgWrapper = styled.div`
+  height:125px;
+  width:125px;
 `
 
 const Card = styled.div`
@@ -67,7 +66,7 @@ const Card = styled.div`
     z-index:10;
   }
 
-  &:hover img {
+  &:hover ${ImgWrapper} {
     transition: transform .2s;
     transform:scale(1.1);
     box-shadow: 0px 0px 5px #000;
@@ -91,11 +90,6 @@ const Card = styled.div`
       transform:translateY(0px);
     }
   }
-`
-
-const ImgWrapper = styled.div`
-  height:125px;
-  width:125px;
 `
 
 
