@@ -34,7 +34,7 @@ function Ladder({ }: LadderProps) {
           {heroes.map(h => (
             <HeroTile key={h.id}>
               <Hero hero={h.hero} options={{ style: 'square' }}></Hero>
-              <HeroPickRate r={h.pickRate}>{Math.floor(h.pickRate * 1000) / 10} %</HeroPickRate>
+              <HeroPickRate title="pick rate" r={h.pickRate}>{Math.floor(h.pickRate * 1000) / 10} %</HeroPickRate>
             </HeroTile>
           ))}
         </HeroesTiles>
@@ -70,9 +70,22 @@ const HeroTile = styled.div`
 
 const HeroPickRate = styled.div`
   padding:0 20px;
-  color: ${props => 'hsl(205deg '+(91 * props.r)+'% 58% / '+(100*props.r)+'%)' };
+  color: ${props => {
+    let r = props.r
+    let luminance = 58
+    let saturation = 91
+    let alpha = 100
+    if(r > 0.5){
+      luminance *= r+0.5
+    }
+    if(r < 0.5){
+      alpha *= r + 0.5
+      saturation *=r*2
+    }
+    return 'hsl(205deg '+saturation+'% '+luminance+'% / '+alpha+'%)' 
+  }};
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
 `
 
 
