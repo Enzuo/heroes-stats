@@ -1,13 +1,25 @@
-WITH votes AS (
-SELECT  
-	"HeroVote"."heroId"
--- 	,"HeroVote"."voteId"
-	,"HeroVote"."isPicked"
-	,"VoteRound"."userId"
-	,"VoteRound"."createdAt"
-	,"VoteRound"."elapsedTime"
-FROM "HeroVote"
-INNER JOIN "VoteRound" ON "VoteRound"."id" = "HeroVote"."voteId"
+WITH filter_user AS (
+  SELECT 
+    "userId"
+    ,COUNT(*) AS "count"
+    ,AVG("elapsedTime") AS "elapsedTimeAvg"
+    ,percentile_cont(0.5) WITHIN GROUP (ORDER BY "elapsedTime") "elapsedTimeMed"
+  FROM "VoteRound"
+  GROUP BY "userId"
+)
+,votes AS (
+  SELECT  
+    "HeroVote"."heroId"
+  -- 	,"HeroVote"."voteId"
+    ,"HeroVote"."isPicked"
+    ,"VoteRound"."userId"
+    ,"VoteRound"."createdAt"
+    ,"VoteRound"."elapsedTime"
+  FROM "HeroVote"
+  INNER JOIN "VoteRound" ON "VoteRound"."id" = "HeroVote"."voteId"
+  INNER JOIN filter_user ON "VoteRound"."userId" = filter_user."userId"
+                        AND filter_user."count" > 30 -- user with enough vote
+                        AND filter_user."elapsedTimeMed" > 1000 -- user who has spent some time thinking
 )
 
 , hero_count AS (
@@ -22,9 +34,9 @@ INNER JOIN "VoteRound" ON "VoteRound"."id" = "HeroVote"."voteId"
 
 , hero_pick_rate_by_user AS (
 	SELECT
-	"heroId"
-	,"userId"
-		, "countPicked"::NUMERIC/"countRound"::NUMERIC AS "pickRate"
+	   "heroId"
+	  ,"userId"
+  	,"countPicked"::NUMERIC / "countRound"::NUMERIC AS "pickRate"
 	FROM hero_count
 )
 , hero_pick_rate_sum AS (
@@ -37,7 +49,7 @@ INNER JOIN "VoteRound" ON "VoteRound"."id" = "HeroVote"."voteId"
 )
 
 SELECT 
-"heroId"
+   "heroId"
 	,"pickRateSum" / "count" AS "pickRate"
 FROM hero_pick_rate_sum
 ORDER BY "pickRate" DESC
