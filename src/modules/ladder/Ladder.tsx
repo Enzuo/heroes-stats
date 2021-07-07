@@ -19,7 +19,9 @@ function Ladder({ }: LadderProps) {
     const getHeroes = async () => {
       var heroesList: { id: number, pickRate: number }[] = await (await api.get('heroes/ladder')).json()
       console.log(heroesList)
-      setHeroes(heroesList.map(h => HEROES_LIST.find(a => a.id === h.id)))
+      setHeroes(heroesList.map(h => { 
+        return { hero : HEROES_LIST.find(a => a.id === h.id), ...h }
+      }))
     }
     getHeroes()
   }, [])
@@ -29,7 +31,12 @@ function Ladder({ }: LadderProps) {
       <h1>Favorite heroes ladder</h1>
       <Panel>
         <HeroesTiles>
-          {heroes.map(h => <Hero key={h.id} hero={h} options={{ style: 'square' }}></Hero>)}
+          {heroes.map(h => (
+            <HeroTile key={h.id}>
+              <Hero hero={h.hero} options={{ style: 'square' }}></Hero>
+              <HeroPickRate r={h.pickRate}>{Math.floor(h.pickRate * 1000) / 10} %</HeroPickRate>
+            </HeroTile>
+          ))}
         </HeroesTiles>
       </Panel>
     </LadderWrapper>
@@ -39,6 +46,10 @@ function Ladder({ }: LadderProps) {
 const LadderWrapper = styled.div`
   margin:20px;
 
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+
   h1 {
     font-size:1.2em;
     color:#8da5d2;
@@ -47,9 +58,21 @@ const LadderWrapper = styled.div`
 
 const HeroesTiles = styled.div`
   display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
+  flex-direction:column;
   max-width:360px;
+`
+
+const HeroTile = styled.div`
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+`
+
+const HeroPickRate = styled.div`
+  padding:0 20px;
+  color: ${props => 'hsl(205deg '+(91 * props.r)+'% 58% / '+(100*props.r)+'%)' };
+  font-weight: bold;
+  font-size: 18px;
 `
 
 
