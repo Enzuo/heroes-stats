@@ -1,4 +1,4 @@
-import * as db from '@/common/utils/database'
+import * as db from '@/common/database/database'
 import { calculateRankFromVotes } from '@/common/blogic/vote'
 
 
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   switch(method){
     case 'GET':
       try {
-        const votes = await db.getHeroesVoteForUser(userUid);
+        const votes = await db.getHeroesVoteForUser(userUid)
         const heroes = calculateRankFromVotes(votes)
         res.status(200).json(heroes)
       }

@@ -1,4 +1,4 @@
-import * as db from '@/common/utils/database'
+import * as db from '@/common/database/database'
 import {checkUserUid} from '@/common/utils'
 import type * as T from '@/common/types/game'
 

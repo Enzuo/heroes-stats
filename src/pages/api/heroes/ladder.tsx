@@ -1,4 +1,6 @@
 import * as db from '@/common/database/database'
+import { calculateRankFromVotes } from '@/common/blogic/vote'
+
 
 export default async function handler(req, res) {
   const {
@@ -10,8 +12,8 @@ export default async function handler(req, res) {
   switch(method){
     case 'GET':
       try {
-        const result = await db.listGames(userUid);
-        res.status(200).json(result)
+        const heroes = await db.getHeroesLadder()
+        res.status(200).json(heroes)
       }
       catch(e){
         console.error(e)

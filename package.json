@@ -23,6 +23,7 @@
     "@prisma/client": "^2.25.0",
     "babel-jest": "^27.0.6",
     "next": "^11.0.0",
+    "raw-loader": "^4.0.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-notify-toast": "^0.5.1",
