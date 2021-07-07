@@ -2,10 +2,17 @@ Heroes stats let you save matches and a brief overall impression of the match, i
 
 ## Install
 
-Setup postgres database and enter it in .env
+Setup postgres database and enter the connexion string in .env
 ```
 npm install
 npm run dev
+```
+
+For spritesheet generation
+Setup imagemagick (magick) and graphicmagick (gm)
+```
+brew install imagemagick
+brew install graphicsmagick
 ```
 
 ## Database commands
