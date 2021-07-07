@@ -37,7 +37,7 @@ export function checkUserUid(uid : string) {
 }
 
 export const api = {
-  post : (api, data) => { 
+  post : (api : string, data) => { 
     return fetch('/api/'+api , {
       method: 'POST',
       headers: {
@@ -46,7 +46,7 @@ export const api = {
       body: JSON.stringify(data),
     })
   },
-  get : (api, params) => { 
+  get : (api : string, params = {}) => { 
     var queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
     return fetch('/api/'+api+'?'+queryString , {
       method: 'GET',

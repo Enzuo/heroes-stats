@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import DashBoard from '@/modules/dashboard/Dashboard'
+import DashBoardModule from '@/modules/dashboard/Dashboard'
 
-export default function Home() {
+export default function DashBoard() {
 
 
   return (
-    <DashBoard></DashBoard>
+    <DashBoardModule></DashBoardModule>
   )
 }

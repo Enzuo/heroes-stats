@@ -47,7 +47,7 @@ WITH filter_user AS (
 )
 
 SELECT 
-   "heroId"
+   "heroId" AS "id"
   ,"pickRateSum" / "count" AS "pickRate"
 FROM hero_pick_rate_sum
 ORDER BY "pickRate" DESC

@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import type * as T from '@/common/types/game'
 
-const globalLadderQuery = require('./globalLadder.sql')
+const globalHeroesLadderQuery = require('./globalHeroesLadder.sql').default
 const prisma = new PrismaClient()
 
 
@@ -22,8 +22,7 @@ export async function getHeroesVoteForUser (uuid) {
 }
 
 export async function getHeroesLadder () {
-  console.log('globalLadderQuery', globalLadderQuery)
-  const result = prisma.$queryRaw(globalLadderQuery.default)
+  const result = prisma.$queryRaw(globalHeroesLadderQuery)
   return result
 }
       
